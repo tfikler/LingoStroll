@@ -27,6 +27,12 @@ const GoogleStreet = () => {
         setMap(null)
     }, []);
 
+    const handlePositionChange = () => {
+        const panorama = map.getStreetView();
+        const position = panorama.getPosition();
+        console.log(`New Position - Latitude: ${position.lat()}, Longitude: ${position.lng()}`);
+    };
+
 
     return isLoaded ? (
         <GoogleMap
@@ -39,6 +45,13 @@ const GoogleStreet = () => {
             <StreetViewPanorama
                 position={center}
                 visible={true}
+                onPositionChanged={()=>{
+                    console.log(`new position: ${(map.getStreetView().getPov().pitch)}`)
+                }}
+                onPovChanged={()=>{
+                    console.log(`new pov: ${(map.getStreetView().getPov().heading)}`)
+
+                }}
             />
         </GoogleMap>
     ) : <></>
