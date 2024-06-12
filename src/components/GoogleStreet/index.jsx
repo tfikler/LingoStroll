@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader} from "@react-google-maps/api";
+import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
 
 const containerStyle = {
     width: '50vw',
@@ -33,6 +33,9 @@ const GoogleStreet = () => {
         console.log(`New Position - Latitude: ${position.lat()}, Longitude: ${position.lng()}`);
     };
 
+    const cafeIcon = document.createElement("img");
+    cafeIcon.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/cafe_icon.svg";
+
 
     return isLoaded ? (
         <GoogleMap
@@ -42,11 +45,21 @@ const GoogleStreet = () => {
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
+            <Marker
+                position={{ lat: 42.346171163691515, lng: -71.0985753541911}}
+                visible={true}
+                icon={cafeIcon.src}
+                onClick={()=>{
+                alert('You clicked me!')
+                }}
+                clickable={false}
+                animation={window.google.maps.Animation.BOUNCE}
+            />
             <StreetViewPanorama
                 position={center}
                 visible={true}
                 onPositionChanged={()=>{
-                    console.log(`new position: ${(map.getStreetView().getPov().pitch)}`)
+                    console.log(`new position: ${(map.getStreetView().getPosition())}`)
                 }}
                 onPovChanged={()=>{
                     console.log(`new pov: ${(map.getStreetView().getPov().heading)}`)
