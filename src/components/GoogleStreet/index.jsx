@@ -16,7 +16,7 @@ const GoogleStreet = () => {
         id: 'google-map-script',
         googleMapsApiKey: 'AIzaSyDPbgEOXEYQk0xG5xi5cfTyejQIxlKd1bw'
     });
-
+    const [markerVisible, setMarkerVisible] = useState(false);
     const [map, setMap] = useState(null);
     const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds();
@@ -27,14 +27,39 @@ const GoogleStreet = () => {
         setMap(null)
     }, []);
 
-    const handlePositionChange = () => {
+    // const handlePositionChange = () => {
+    //     const panorama = map.getStreetView();
+    //     const position = panorama.getPosition();
+    //     console.log(`New Position - Latitude: ${position.lat()}, Longitude: ${position.lng()}`);
+    // };
+
+    const checkIfMarkerVisible = () => {
         const panorama = map.getStreetView();
         const position = panorama.getPosition();
-        console.log(`New Position - Latitude: ${position.lat()}, Longitude: ${position.lng()}`);
+        // Check if the latitude and longitude are within the specified bounds
+        if (position.lat() >= 42.346 && position.lat() <= 42.3462 &&
+            position.lng() <= -71.0985 && position.lng() >= -71.0989) {
+            console.log('returning true')
+            console.log(`current pos: ${position.lat()} - ${position.lng()}`)
+            return true;
+        }
+        console.log(`Marker not visible at lat: ${position.lat()} and lng: ${position.lng()}. Expected between lat: 42.346 to 42.3462 and lng: -71.0986 to -71.0987`);
+        return false;
+    }
+
+    const handlePositionChange = () => {
+        const visible = checkIfMarkerVisible();
+        setMarkerVisible(visible);
+        console.log(`Marker visibility updated to: ${visible}`);
     };
 
-    const cafeIcon = document.createElement("img");
-    cafeIcon.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/cafe_icon.svg";
+    // const cafeIcon = document.createElement("img");
+    // cafeIcon.src = "https://visualpharm.com/assets/507/Human%20Head-595b40b75ba036ed117d8d06.svg";
+
+    const cafeIcon = {
+        url: "https://clipart-library.com/2023/small-person-icon-17.jpg",
+        scaledSize: new window.google.maps.Size(50,50)
+    }
 
 
     return isLoaded ? (
@@ -45,26 +70,18 @@ const GoogleStreet = () => {
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
-            <Marker
-                position={{ lat: 42.346171163691515, lng: -71.0985753541911}}
-                visible={true}
-                icon={cafeIcon.src}
-                onClick={()=>{
-                alert('You clicked me!')
-                }}
-                clickable={false}
-                animation={window.google.maps.Animation.BOUNCE}
-            />
+            {markerVisible && (
+                <Marker
+                    position={{ lat: 42.34600492823, lng: -71.0985320138475 }}
+                    icon={cafeIcon}
+                    onClick={() => alert('You clicked me!')}
+                    animation={window.google.maps.Animation.BOUNCE}
+                />
+            )}
             <StreetViewPanorama
                 position={center}
                 visible={true}
-                onPositionChanged={()=>{
-                    console.log(`new position: ${(map.getStreetView().getPosition())}`)
-                }}
-                onPovChanged={()=>{
-                    console.log(`new pov: ${(map.getStreetView().getPov().heading)}`)
-
-                }}
+                onPositionChanged={handlePositionChange}
             />
         </GoogleMap>
     ) : <></>
