@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
-
 const containerStyle = {
     width: '50vw',
     height: '100vh'
@@ -44,7 +43,7 @@ const GoogleStreet = () => {
         if (!panorama) return; // Ensure panorama is defined
         const position = panorama.getPosition();
         // Check if the latitude and longitude are within the specified bounds
-        if (position.lat() >= 42.346 && position.lat() <= 42.3462 &&
+        if (position.lat() >= 42.3461 && position.lat() <= 42.3462 &&
             position.lng() <= -71.0985 && position.lng() >= -71.0989) {
             console.log('returning true')
             console.log(`current pos: ${position.lat()} - ${position.lng()}`)
@@ -62,7 +61,7 @@ const GoogleStreet = () => {
 
     const cafeIcon = {
         url: "https://clipart-library.com/2023/small-person-icon-17.jpg",
-        scaledSize: new window.google.maps.Size(50,50)
+        scaledSize: new window.google.maps.Size(500,500)
     }
 
 
@@ -76,7 +75,7 @@ const GoogleStreet = () => {
         >
             {markerVisible && (
                 <Marker
-                    position={{ lat: 42.34600492823, lng: -71.0985320138475 }}
+                    position={{ lat: 42.34611592823, lng: -71.0995320138475 }}
                     icon={cafeIcon}
                     onClick={() => alert('You clicked me!')}
                     animation={window.google.maps.Animation.BOUNCE}
