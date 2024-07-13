@@ -12,12 +12,13 @@ const center = {
 };
 
 const GoogleStreet = () => {
-    const {isLoaded} = useJsApiLoader({
+    const {isLoaded, loadError} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: 'AIzaSyDPbgEOXEYQk0xG5xi5cfTyejQIxlKd1bw'
     });
     const [markerVisible, setMarkerVisible] = useState(false);
     const [map, setMap] = useState(null);
+    const [panorama, setPanorama] = useState(null);
     const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds();
         map.fitBounds(bounds);
@@ -27,14 +28,20 @@ const GoogleStreet = () => {
         setMap(null)
     }, []);
 
-    // const handlePositionChange = () => {
-    //     const panorama = map.getStreetView();
-    //     const position = panorama.getPosition();
-    //     console.log(`New Position - Latitude: ${position.lat()}, Longitude: ${position.lng()}`);
-    // };
+    useEffect(() => {
+        if (map) {
+            // Ensure map.getStreetView() is called only after the map is fully loaded
+            try {
+                setPanorama(map.getStreetView());
+                checkIfMarkerVisible(panorama);
+            } catch (error) {
+                console.error('Failed to get Street View:', error);
+            }
+        }
+    }, [map]); // This effect runs only once when the map is set
 
     const checkIfMarkerVisible = () => {
-        const panorama = map.getStreetView();
+        if (!panorama) return; // Ensure panorama is defined
         const position = panorama.getPosition();
         // Check if the latitude and longitude are within the specified bounds
         if (position.lat() >= 42.346 && position.lat() <= 42.3462 &&
@@ -52,9 +59,6 @@ const GoogleStreet = () => {
         setMarkerVisible(visible);
         console.log(`Marker visibility updated to: ${visible}`);
     };
-
-    // const cafeIcon = document.createElement("img");
-    // cafeIcon.src = "https://visualpharm.com/assets/507/Human%20Head-595b40b75ba036ed117d8d06.svg";
 
     const cafeIcon = {
         url: "https://clipart-library.com/2023/small-person-icon-17.jpg",
