@@ -1,8 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
 const containerStyle = {
-    width: '50vw',
-    height: '100vh'
+    height: '400px',
 };
 
 const center = {

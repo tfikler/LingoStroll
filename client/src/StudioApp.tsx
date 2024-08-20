@@ -7,9 +7,6 @@ export default function StudioApp() {
     const renderRoutes = (allRoutes: any[]) => {
         const renderedRoutes: any[] = [];
         allRoutes.map((route) => {
-            if (route.collapse) {
-                renderedRoutes.push(renderRoutes(route.collapse));
-            }
             if (route.route) {
                 renderedRoutes.push(
                     <Route path={`${route.route}`} element={route.component} key={route.key} />

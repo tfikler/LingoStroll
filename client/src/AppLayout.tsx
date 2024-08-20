@@ -2,6 +2,8 @@ import React, { Fragment } from 'react'
 import TopNavBar from "./components/TopNavBar";
 import Middle from "./components/Middle";
 
+import { getRoutes } from "./routes";
+
 import { styled } from "@mui/material/styles";
 
 
@@ -27,14 +29,12 @@ export default function AppLayout({ appRoutes, children }: { appRoutes: any[]; c
         // paddingBottom: theme.spacing(1),
     }));
 
+  const routes = getRoutes();
+
   return (
       <LayoutMain>
-        {/*<LayoutTopBar>*/}
-          <TopNavBar/>
-            <LayoutContent>
-                <Middle/>
-            </LayoutContent>
-        {/*</LayoutTopBar>*/}
+          <TopNavBar routes={routes}/>
+          <LayoutContent>{children}</LayoutContent>
       </LayoutMain>
   )
 }
