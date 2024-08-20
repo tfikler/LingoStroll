@@ -1,19 +1,23 @@
-import React, { useState, Fragment } from 'react';
+import React, {useState, Fragment, useContext} from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { SelectionContext } from '../Context';
 import './features10.css';
 
 const Middle = (props) => {
+    const { selections, updateSelection } = useContext(SelectionContext);
     const [selectedLanguage, setSelectedLanguage] = useState('');
     const [selectedRank, setSelectedRank] = useState(0);
     const navigate = useNavigate();
 
     const handleLanguageSelect = (language) => {
+        updateSelection('language', language);
         setSelectedLanguage(language);
         setSelectedRank(0); // Reset rank selection when changing language
     };
 
     const handleRankSelect = (rank) => {
+        updateSelection('rank', rank);
         setSelectedRank(rank);
         navigate('/game'); // Navigate to the game route after rank selection
     };
