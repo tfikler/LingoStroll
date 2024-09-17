@@ -2,6 +2,7 @@ import React, {useState, Fragment, useContext} from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { SelectionContext } from '../Context';
+import { getDataForLanguageAndRank } from "../../api/languages";
 import './features10.css';
 
 const Middle = (props) => {
@@ -16,9 +17,11 @@ const Middle = (props) => {
         setSelectedRank(0); // Reset rank selection when changing language
     };
 
-    const handleRankSelect = (rank) => {
+    const handleRankSelect = async (rank) => {
         updateSelection('rank', rank);
         setSelectedRank(rank);
+        // TODO: send request to server to get questions for the selected language and rank & location
+        // TODO: propagate the questions to the game component
         navigate('/game'); // Navigate to the game route after rank selection
     };
 
