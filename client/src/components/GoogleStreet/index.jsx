@@ -13,7 +13,9 @@ const center = {
 const GoogleStreet = () => {
     const {isLoaded, loadError} = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: 'AIzaSyDPbgEOXEYQk0xG5xi5cfTyejQIxlKd1bw'
+        //googleMapsApiKey: 'AIzaSyDPbgEOXEYQk0xG5xi5cfTyejQIxlKd1bw'
+        //Noa's api key
+        googleMapsApiKey: '',
     });
     const [markerVisible, setMarkerVisible] = useState(false);
     const [map, setMap] = useState(null);
