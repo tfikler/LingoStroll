@@ -1,24 +1,5 @@
 import {FlowConfig, LandmarkConfig} from '../flow-config/configurations';
 
-// Service function to fetch data based on language and rank
-// export class GameService {
-//     private flowConfig: FlowConfig;
-//
-//     constructor() {
-//         this.flowConfig = new FlowConfig();
-//     }
-//
-//
-//
-//     public getRank(rankKey: number): string {
-//         return this.flowConfig.getRank(rankKey);
-//     }
-//
-//     private getRandomItem<T>(items: T[]): T {
-//         return items[Math.floor(Math.random() * items.length)];
-//     }
-// }
-
 const flowConfig = new FlowConfig();
 function getRank(rankKey: number): string {
          return flowConfig.getRank(rankKey);
