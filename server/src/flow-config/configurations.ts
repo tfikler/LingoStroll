@@ -25,7 +25,10 @@ export class FlowConfig {
                     //     new LandmarkConfig("Plaza Mayor", 40.4155000, -3.7074000, "Order food in Spanish.", 3),
                     // ]),
                     new CityConfig("Seville", [
-                        new LandmarkConfig("Seville Cathedral", 37.3860686, -5.9927638, "Discuss religion in Spanish.", [{lat: 37.3861041, lng: -5.9923071}]
+                        new LandmarkConfig("Seville Cathedral", 37.3860686, -5.9927638, "Discuss religion in Spanish.", [{lat: 37.3861041, lng: -5.9923071}, {
+                                lat:37.3852044,
+                                lng:-5.993113
+                            }]
                             ,1),
                         new LandmarkConfig("Alcázar of Seville", 37.3831000, -5.9903000, "Talk about history in Spanish.",[{lat: 37.3861041, lng: -5.9923071}]
                             ,2),
