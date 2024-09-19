@@ -8,8 +8,8 @@ const containerStyle = {
 };
 
 const center = {
-    lat: 42.345573,
-    lng: -71.098326
+    lat: 37.3863048,
+    lng: -5.9922559
 };
 
 const GoogleStreet = (props) => {
@@ -69,6 +69,7 @@ const GoogleStreet = (props) => {
         scaledSize: new window.google.maps.Size(500,500)
     }
     const startPoint = selections.languageAndRankData.location;
+    console.log('startPoint:', startPoint)
 
 
     return isLoaded ? (
@@ -88,7 +89,7 @@ const GoogleStreet = (props) => {
                 />
             )}
             <StreetViewPanorama
-                position={center}
+                position={startPoint}
                 visible={true}
                 onPositionChanged={handlePositionChange}
             />

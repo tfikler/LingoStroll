@@ -15,19 +15,19 @@ export class FlowConfig {
             spanish: new LanguageConfig("Spanish", [
                 new CountryConfig("Spain", [
                     new CityConfig("Barcelona", [
-                        new LandmarkConfig("La Sagrada Familia", 41.4036,2.1744, "Discuss architecture in Spanish.", 1),
-                        new LandmarkConfig("Park Güell", 41.4145,2.1527, "Talk about art in Spanish.", 2),
-                        new LandmarkConfig("La Rambla", 41.3809,2.1730, "Order tapas in Spanish.", 3),
+                        new LandmarkConfig("La Sagrada Familia", 41.4036000, 2.1744000, "Discuss architecture in Spanish.", 1),
+                        new LandmarkConfig("Park Güell", 41.4145000, 2.1527000, "Talk about art in Spanish.", 2),
+                        new LandmarkConfig("La Rambla", 41.3809000, 2.1730000, "Order tapas in Spanish.", 3),
                     ]),
                     new CityConfig("Madrid", [
-                        new LandmarkConfig("Prado Museum", 40.4138,-3.6921, "Discuss famous paintings in Spanish.", 1),
-                        new LandmarkConfig("Retiro Park", 40.4153,-3.6846, "Talk about nature in Spanish.", 2),
-                        new LandmarkConfig("Plaza Mayor", 40.4155,-3.7074, "Order food in Spanish.", 3),
+                        new LandmarkConfig("Prado Museum", 40.4138000, -3.6921000, "Discuss famous paintings in Spanish.", 1),
+                        new LandmarkConfig("Retiro Park", 40.4153000, -3.6846000, "Talk about nature in Spanish.", 2),
+                        new LandmarkConfig("Plaza Mayor", 40.4155000, -3.7074000, "Order food in Spanish.", 3),
                     ]),
                     new CityConfig("Seville", [
-                        new LandmarkConfig("Seville Cathedral", 37.3859,-5.9930, "Discuss religion in Spanish.", 1),
-                        new LandmarkConfig("Alcázar of Seville", 37.3831,-5.9903, "Talk about history in Spanish.", 2),
-                        new LandmarkConfig("Plaza de España", 37.3772,-5.9869, "Discuss culture in Spanish.", 3),
+                        new LandmarkConfig("Seville Cathedral", 37.3859000, -5.9930000, "Discuss religion in Spanish.", 1),
+                        new LandmarkConfig("Alcázar of Seville", 37.3831000, -5.9903000, "Talk about history in Spanish.", 2),
+                        new LandmarkConfig("Plaza de España", 37.3772000, -5.9869000, "Discuss culture in Spanish.", 3),
                     ]),
                 ]),
                 // new CountryConfig("Mexico", [
@@ -68,19 +68,19 @@ export class FlowConfig {
             english: new LanguageConfig("English", [
                 new CountryConfig("United States", [
                     new CityConfig("New York", [
-                        new LandmarkConfig("Statue of Liberty", 40.6892,-74.0445, "Discuss history in English.", 1),
-                        new LandmarkConfig("Central Park", 40.7851,-73.9683, "Talk about nature in English.", 2),
-                        new LandmarkConfig("Times Square", 40.7580,-73.9855, "Order tickets in English.", 3),
+                        new LandmarkConfig("Statue of Liberty", 37.3863048,-5.9922559, "Discuss history in English.", 1),
+                        new LandmarkConfig("Central Park", 37.3863048,-5.9922559, "Talk about nature in English.", 2),
+                        new LandmarkConfig("Times Square", 37.3863048,-5.9922559, "Order tickets in English.", 3),
                     ]),
                     new CityConfig("Los Angeles", [
-                        new LandmarkConfig("Hollywood Sign", 34.1341,-118.3215, "Discuss movies in English.", 1),
-                        new LandmarkConfig("Santa Monica Pier", 34.0094,-118.4973, "Talk about leisure in English.", 2),
-                        new LandmarkConfig("Getty Center", 34.0780,-118.4741, "Discuss art in English.", 3),
+                        new LandmarkConfig("Hollywood Sign", 37.3863048,-5.9922559, "Discuss movies in English.", 1),
+                        new LandmarkConfig("Santa Monica Pier", 37.3863048,-5.9922559, "Talk about leisure in English.", 2),
+                        new LandmarkConfig("Getty Center", 37.3863048,-5.9922559, "Discuss art in English.", 3),
                     ]),
                     new CityConfig("Chicago", [
-                        new LandmarkConfig("Millennium Park", 41.8826,-87.6226, "Discuss art in English.", 1),
-                        new LandmarkConfig("Navy Pier", 41.8917,-87.6091, "Talk about leisure in English.", 2),
-                        new LandmarkConfig("Willis Tower", 41.8789,-87.6359, "Discuss architecture in English.", 3),
+                        new LandmarkConfig("Millennium Park", 37.3863048,-5.9922559, "Discuss art in English.", 1),
+                        new LandmarkConfig("Navy Pier", 37.3863048,-5.9922559, "Talk about leisure in English.", 2),
+                        new LandmarkConfig("Willis Tower", 37.3863048,-5.9922559, "Discuss architecture in English.", 3),
                     ]),
                 ]),
             //     new CountryConfig("United Kingdom", [
