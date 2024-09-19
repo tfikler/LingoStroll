@@ -48,13 +48,13 @@ const GoogleStreet = (props) => {
         if (!panorama) return; // Ensure panorama is defined
         const position = panorama.getPosition();
         // Check if the latitude and longitude are within the specified bounds
-        if (position.lat() >= 42.3461 && position.lat() <= 42.3462 &&
-            position.lng() <= -71.0985 && position.lng() >= -71.0989) {
+        if (position.lat() >= 37.38583 && position.lat() <= 37.38587 &&
+            position.lng() <= -5.99379 && position.lng() >= -5.9909) {
             console.log('returning true')
             console.log(`current pos: ${position.lat()} - ${position.lng()}`)
             return true;
         }
-        console.log(`Marker not visible at lat: ${position.lat()} and lng: ${position.lng()}. Expected between lat: 42.346 to 42.3462 and lng: -71.0986 to -71.0987`);
+        console.log(`Marker not visible at lat: ${position.lat()} and lng: ${position.lng()}. Expected between lat: 37.38583 to 37.38587 and lng: -5.99279 to -5.99209`);
         return false;
     }
 
@@ -65,11 +65,11 @@ const GoogleStreet = (props) => {
     };
 
     const cafeIcon = {
-        url: "https://clipart-library.com/2023/small-person-icon-17.jpg",
+        url: './fenix.png',
         scaledSize: new window.google.maps.Size(500,500)
     }
     const startPoint = selections.languageAndRankData.location;
-    console.log('startPoint:', startPoint)
+    const firstMarker = selections.languageAndRankData.markerLocations[0];
 
 
     return isLoaded ? (
@@ -80,10 +80,13 @@ const GoogleStreet = (props) => {
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
-            {markerVisible && (
+            {true && (
                 <Marker
-                    position={{ lat: 42.34611592823, lng: -71.0995320138475 }}
-                    icon={cafeIcon}
+                    title={'The marker`s title will appear as a tooltip.'}
+                    position={firstMarker}
+                    icon={{
+                        path: window.google.maps.Circle, // Use a predefined shape or your own custom image
+                    }}
                     onClick={() => alert('You clicked me!')}
                     animation={window.google.maps.Animation.BOUNCE}
                 />
