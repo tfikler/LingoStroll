@@ -1,5 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
+import {SelectionContext} from "../Context";
+import PropTypes from "prop-types";
 const containerStyle = {
     height: '100%',
     width: '100%'
@@ -10,7 +12,8 @@ const center = {
     lng: -71.098326
 };
 
-const GoogleStreet = () => {
+const GoogleStreet = (props) => {
+    const { selections, updateSelection } = useContext(SelectionContext);
     const {isLoaded, loadError} = useJsApiLoader({
         id: 'google-map-script',
         //googleMapsApiKey: 'AIzaSyDPbgEOXEYQk0xG5xi5cfTyejQIxlKd1bw'
@@ -65,12 +68,13 @@ const GoogleStreet = () => {
         url: "https://clipart-library.com/2023/small-person-icon-17.jpg",
         scaledSize: new window.google.maps.Size(500,500)
     }
+    const startPoint = selections.languageAndRankData.location;
 
 
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
-            center={center}
+            center={startPoint}
             zoom={16}
             onLoad={onLoad}
             onUnmount={onUnmount}
@@ -90,6 +94,10 @@ const GoogleStreet = () => {
             />
         </GoogleMap>
     ) : <></>
+}
+
+GoogleStreet.propTypes = {
+    sectionDescription: PropTypes.element,
 }
 
 export default GoogleStreet;

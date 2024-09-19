@@ -1,4 +1,5 @@
 import {Request, Response} from "express";
+import {openaiClient} from "../libs/openai";
 
 export const practiceLanguage = async (req: Request, res: Response) => {
     const { language, rank } = req.body;
@@ -23,13 +24,12 @@ export const practiceLanguage = async (req: Request, res: Response) => {
         };
         const prompt = `You are at ${landmark.name} in ${landmark.location}. ${landmark.prompt}`;
 
-        // const openaiResponse = await openai.createCompletion({
-        //     model: "gpt-4",
-        //     prompt: prompt,
-        //     max_tokens: 300,
-        // });
+        const openaiResponse = await openaiClient.chat.completions.create({
+            model: "gpt-4",
+            messages: [{role: "system", content: prompt}],
+        })
 
-        // const conversation = openaiResponse.data.choices[0].text?.trim();
+        console.log(openaiResponse.choices[0].message);
 
         // res.json({
         //     language,
@@ -41,4 +41,31 @@ export const practiceLanguage = async (req: Request, res: Response) => {
         console.error("Error generating conversation:", error);
         res.status(500).send("Error generating conversation.");
     }
+};
+
+export const chat = async (req: Request, res: Response) => {
+    const { messages, language } = req.body;
+
+    if (!messages || !language) {
+        return res.status(400).send("Messages and language are required.");
+    }
+
+    // try {
+    //     const conversationHistory = messages.map(msg => ({
+    //         role: msg.sender === 'user' ? 'user' : 'assistant',
+    //         content: msg.text,
+    //     }));
+    //
+    //     const openaiResponse = await openai.createChatCompletion({
+    //         model: "gpt-4",
+    //         messages: conversationHistory,
+    //     });
+    //
+    //     const reply = openaiResponse.data.choices[0].message?.content.trim();
+    //
+    //     res.json({ reply });
+    // } catch (error) {
+    //     console.error('Error in /chat:', error);
+    //     res.status(500).send("Error generating response.");
+    // }
 };
