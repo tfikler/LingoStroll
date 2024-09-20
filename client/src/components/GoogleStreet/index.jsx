@@ -1,16 +1,19 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
+import {SelectionContext} from "../Context";
+import PropTypes from "prop-types";
 const containerStyle = {
     height: '100%',
     width: '100%'
 };
 
 const center = {
-    lat: 42.345573,
-    lng: -71.098326
+    lat: 37.3863048,
+    lng: -5.9922559
 };
 
-const GoogleStreet = () => {
+const GoogleStreet = (props) => {
+    const { selections, updateSelection } = useContext(SelectionContext);
     const {isLoaded, loadError} = useJsApiLoader({
         id: 'google-map-script',
         //googleMapsApiKey: 'AIzaSyDPbgEOXEYQk0xG5xi5cfTyejQIxlKd1bw'
@@ -45,13 +48,13 @@ const GoogleStreet = () => {
         if (!panorama) return; // Ensure panorama is defined
         const position = panorama.getPosition();
         // Check if the latitude and longitude are within the specified bounds
-        if (position.lat() >= 42.3461 && position.lat() <= 42.3462 &&
-            position.lng() <= -71.0985 && position.lng() >= -71.0989) {
+        if (position.lat() >= 37.38583 && position.lat() <= 37.38587 &&
+            position.lng() <= -5.99379 && position.lng() >= -5.9909) {
             console.log('returning true')
             console.log(`current pos: ${position.lat()} - ${position.lng()}`)
             return true;
         }
-        console.log(`Marker not visible at lat: ${position.lat()} and lng: ${position.lng()}. Expected between lat: 42.346 to 42.3462 and lng: -71.0986 to -71.0987`);
+        console.log(`Marker not visible at lat: ${position.lat()} and lng: ${position.lng()}. Expected between lat: 37.38583 to 37.38587 and lng: -5.99279 to -5.99209`);
         return false;
     }
 
@@ -62,34 +65,46 @@ const GoogleStreet = () => {
     };
 
     const cafeIcon = {
-        url: "https://clipart-library.com/2023/small-person-icon-17.jpg",
+        url: './fenix.png',
         scaledSize: new window.google.maps.Size(500,500)
     }
+    const startPoint = selections.languageAndRankData.location;
+    const firstMarker = selections.languageAndRankData.markerLocations[0];
 
 
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
-            center={center}
+            center={startPoint}
             zoom={16}
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
-            {markerVisible && (
+            {true && (
                 <Marker
-                    position={{ lat: 42.34611592823, lng: -71.0995320138475 }}
-                    icon={cafeIcon}
+                    title={'The marker`s title will appear as a tooltip.'}
+                    position={{
+                        lat:37.3852044,
+                        lng:-5.993113
+                    }}
+                    icon={{
+                        path: window.google.maps.Circle, // Use a predefined shape or your own custom image
+                    }}
                     onClick={() => alert('You clicked me!')}
                     animation={window.google.maps.Animation.BOUNCE}
                 />
             )}
             <StreetViewPanorama
-                position={center}
+                position={startPoint}
                 visible={true}
                 onPositionChanged={handlePositionChange}
             />
         </GoogleMap>
     ) : <></>
+}
+
+GoogleStreet.propTypes = {
+    sectionDescription: PropTypes.element,
 }
 
 export default GoogleStreet;
