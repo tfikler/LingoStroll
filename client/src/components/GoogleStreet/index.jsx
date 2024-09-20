@@ -84,8 +84,8 @@ const GoogleStreet = (props) => {
                 <Marker
                     title={'The marker`s title will appear as a tooltip.'}
                     position={{
-                        lat:37.3852044,
-                        lng:-5.993113
+                        lat:37.3853883,
+                        lng:-5.9930006
                     }}
                     icon={{
                         path: window.google.maps.Circle, // Use a predefined shape or your own custom image
