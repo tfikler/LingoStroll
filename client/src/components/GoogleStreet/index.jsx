@@ -84,7 +84,7 @@ const GoogleStreet = (props) => {
                 <Marker
                     title={'The marker`s title will appear as a tooltip.'}
                     position={{
-                        lat:37.3853883,
+                        lat:37.3853683,
                         lng:-5.9930006
                     }}
                     icon={{
