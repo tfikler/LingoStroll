@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
 import {SelectionContext} from "../Context";
 import PropTypes from "prop-types";
+import ChatInterface from "../ChatInterface/index.tsx";
 const containerStyle = {
     height: '100%',
     width: '100%'
@@ -23,6 +24,7 @@ const GoogleStreet = (props) => {
     const [markerVisible, setMarkerVisible] = useState(false);
     const [map, setMap] = useState(null);
     const [panorama, setPanorama] = useState(null);
+    const [conversationOn, setConversationOn] = useState(false);
     const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds();
         map.fitBounds(bounds);
@@ -68,6 +70,11 @@ const GoogleStreet = (props) => {
         url: './fenix.png',
         scaledSize: new window.google.maps.Size(500,500)
     }
+
+    const handleStartConversation = () => {
+        console.log('Starting conversation...');
+        setConversationOn(true);
+    };
     const startPoint = selections.languageAndRankData.location;
     const firstMarker = selections.languageAndRankData.markerLocations[0];
 
@@ -90,10 +97,13 @@ const GoogleStreet = (props) => {
                     icon={{
                         path: window.google.maps.Circle, // Use a predefined shape or your own custom image
                     }}
-                    onClick={() => alert('You clicked me!')}
+                    onClick={() => handleStartConversation()}
                     animation={window.google.maps.Animation.BOUNCE}
                 />
             )}
+            {console.log(conversationOn)}
+            {conversationOn && <ChatInterface language={'Spanish'} rank={3}/>}
+
             <StreetViewPanorama
                 position={startPoint}
                 visible={true}

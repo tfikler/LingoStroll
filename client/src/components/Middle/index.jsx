@@ -52,7 +52,6 @@ const Middle = (props) => {
             <div className="features10-max-width">
                 <div className="features10-section-title">
                     <h2>Welcome to Language Mastery</h2>
-                    <ChatInterface language={'Spanish'} rank={3} />
                     <p>
                         {selectedLanguage ? `Select your rank for ${selectedLanguage}:` : 'Choose a language to get started:'}
                     </p>
