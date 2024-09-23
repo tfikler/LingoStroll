@@ -147,7 +147,16 @@ const GoogleStreet = (props) => {
                     border: '2px solid black',
                     zIndex: 1
             }}>
+                <Marker
+                    title={'The marker`s title will appear as a tooltip.'}
+                    position={markerLocations}
+                    icon={{
+                        path: window.google.maps.Circle, // Use a predefined shape or your own custom image
+                    }}
+                    animation={window.google.maps.Animation.BOUNCE}
+                />
             </GoogleMap>
+
         </>
     ) : <></>
 }
