@@ -24,6 +24,7 @@ const Middle = (props) => {
         // TODO: send request to server to get questions for the selected language and rank & location
         // TODO: propagate the questions to the game component
         updateSelection('languageAndRankData', await getDataForLanguageAndRank(selectedLanguage, rank));
+        console.log(selections.languageAndRankData);
         navigate('/game'); // Navigate to the game route after rank selection
     };
 
@@ -52,7 +53,6 @@ const Middle = (props) => {
             <div className="features10-max-width">
                 <div className="features10-section-title">
                     <h2>Welcome to Language Mastery</h2>
-                    <ChatInterface language={'Spanish'} rank={3} />
                     <p>
                         {selectedLanguage ? `Select your rank for ${selectedLanguage}:` : 'Choose a language to get started:'}
                     </p>

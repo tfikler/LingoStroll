@@ -28,19 +28,22 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ language, rank }) => {
 
     useEffect(() => {
         // Optionally, you can start the conversation when the component mounts
-        // startConversation();
+        startConversation();
     }, []);
 
     const startConversation = async () => {
+        console.log('starting conversation')
         try {
             const response = await axios.post<PracticeResponse>(`${API_BASE_URL}/api/openai/practice`, {
                 language,
                 rank,
             });
 
+            console.log(response)
+
             const initialMessage: Message = {
                 sender: 'system',
-                text: `You are at ${response.data.landmark}. ${response.data.conversation}`,
+                text: `You are at ${response.data.landmark}. ${JSON.stringify(response.data.conversation.content)}`,
             };
 
             setMessages([initialMessage]);
