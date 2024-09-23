@@ -24,6 +24,7 @@ const Middle = (props) => {
         // TODO: send request to server to get questions for the selected language and rank & location
         // TODO: propagate the questions to the game component
         updateSelection('languageAndRankData', await getDataForLanguageAndRank(selectedLanguage, rank));
+        console.log(selections.languageAndRankData);
         navigate('/game'); // Navigate to the game route after rank selection
     };
 

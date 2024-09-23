@@ -64,7 +64,6 @@ export const AmericanQuestions = () => {
                 const newLevel = currentLevel + 1;
                 updateSelection('currentLevel', newLevel);
             }
-            // setIsModalVisible(false);
             setIsQuizCompleted(true);
         }
     };

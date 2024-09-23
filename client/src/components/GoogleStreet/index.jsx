@@ -2,16 +2,10 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
 import {SelectionContext} from "../Context";
 import PropTypes from "prop-types";
-import ChatInterface from "../ChatInterface/index.tsx";
 import {AmericanQuestions} from "../AmericanQuestions/index.tsx";
 const containerStyle = {
     height: '100%',
     width: '100%'
-};
-
-const center = {
-    lat: 37.3863048,
-    lng: -5.9922559
 };
 
 const GoogleStreet = (props) => {
@@ -25,8 +19,11 @@ const GoogleStreet = (props) => {
     });
     const [markerVisible, setMarkerVisible] = useState(false);
     const [map, setMap] = useState(null);
+    const [miniMap, setMiniMap] = useState(null);
     const [panorama, setPanorama] = useState(null);
     const [conversationOn, setConversationOn] = useState(false);
+
+
     const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds();
         map.fitBounds(bounds);
@@ -47,6 +44,17 @@ const GoogleStreet = (props) => {
             }
         }
     }, [map]); // This effect runs only once when the map is set
+
+    useEffect(() => {
+        if (miniMap){
+            try {
+                setPanorama(miniMap.getStreetView());
+                checkIfMarkerVisible(panorama);
+            } catch (error) {
+                console.error('Failed to get Street View:', error);
+            }
+        }
+    }, [miniMap]);
 
     useEffect(() => {
         if (!selections.conversationOn){
@@ -84,22 +92,22 @@ const GoogleStreet = (props) => {
         console.log(`Marker visibility updated to: ${visible}`);
     };
 
-    const cafeIcon = {
-        url: './fenix.png',
-        scaledSize: new window.google.maps.Size(500,500)
-    }
-
     const handleStartConversation = () => {
         console.log('Starting conversation...');
         updateSelection('conversationOn', true);
         setConversationOn(true);
     };
+
+    const handlePositionChangeMiniMap = () => {
+
+    };
     const startPoint = selections.languageAndRankData.location;
-    // setMarkerLocations(firstMarker);
 
 
     return isLoaded ? (
+        <>
         <GoogleMap
+            id={'tomer'}
             mapContainerStyle={containerStyle}
             center={startPoint}
             zoom={16}
@@ -117,15 +125,30 @@ const GoogleStreet = (props) => {
                     animation={window.google.maps.Animation.BOUNCE}
                 />
             )}
-            {console.log(conversationOn)}
             {conversationOn && <AmericanQuestions />}
-
             <StreetViewPanorama
                 position={startPoint}
                 visible={true}
                 onPositionChanged={handlePositionChange}
             />
         </GoogleMap>
+            {/* Way to get the panorama works - load it without streetView, and only after its all loads, add streetview */}
+            <GoogleMap
+                zoom={16}
+                streetView={panorama}
+                onLoad={(map) =>  map.setStreetView(panorama)}
+                center={startPoint}
+                mapContainerStyle={{
+                    position: 'absolute',
+                    bottom: '10px',
+                    left: '10px',
+                    width: '300px',
+                    height: '300px',
+                    border: '2px solid black',
+                    zIndex: 1
+            }}>
+            </GoogleMap>
+        </>
     ) : <></>
 }
 
