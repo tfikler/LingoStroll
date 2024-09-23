@@ -32,7 +32,7 @@ export class FlowConfig {
                                 
                             },{lat: 37.3853863,lng:-5.9930006},{lat:37.385257,lng:-5.9938882}]
                             ,1),
-                        new LandmarkConfig("Alcázar of Seville", 37.3831000, -5.9903000, "Talk about history in Spanish.",[{lat: 37.3861041, lng: -5.9923071},{lat:37.3836432,lng:-5.9913286},{lat:37.3837437,lng:-5.991077}]
+                        new LandmarkConfig("Alcázar of Seville", 37.3863862, -5.992497, "Talk about history in Spanish.",[{lat: 37.3861041, lng: -5.9923071},{lat:37.3836432,lng:-5.9913286},{lat:37.3837437,lng:-5.991077}]
                             ,2),
                         new LandmarkConfig("Plaza de España", 37.3772000, -5.9869000, "Discuss culture in Spanish.",[{lat: 37.3861041, lng: -5.9923071},{lat:37.3768502,lng:-5.9899179}, {lat:37.374153,lng:-5.988111}]
                             , 3),
