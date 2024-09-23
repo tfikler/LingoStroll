@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Loading } from '../Loading/index.tsx';
 import './americanQuestion.css';
+import {SelectionContext} from "../Context";
 
 
 export const AmericanQuestions = () => {
+    const { selections, updateSelection } = useContext(SelectionContext);
     const [isLoading, setIsLoading] = useState(false);
     const [quizContent, setQuizContent] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -60,6 +62,11 @@ export const AmericanQuestions = () => {
         }
     };
 
+    const handleExit = () => {
+        setIsModalVisible(false);
+        updateSelection('conversationOn', false);
+    };
+
     if (isLoading) {
         return <Loading />;
     }
@@ -68,7 +75,7 @@ export const AmericanQuestions = () => {
         <>
             {isModalVisible && (
                 <div id="quizModal">
-                    <button id="exitButton" onClick={() => setIsModalVisible(false)}>
+                    <button id="exitButton" onClick={handleExit}>
                         Exit
                     </button>
                     {currentQuestionIndex < quizContent.questions.length ? (

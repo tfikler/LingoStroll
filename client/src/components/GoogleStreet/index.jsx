@@ -47,6 +47,12 @@ const GoogleStreet = (props) => {
         }
     }, [map]); // This effect runs only once when the map is set
 
+    useEffect(() => {
+        if (!selections.conversationOn){
+            setConversationOn(false);
+        }
+    }, [selections.conversationOn]);
+
     const checkIfMarkerVisible = () => {
         if (!panorama) return; // Ensure panorama is defined
         const position = panorama.getPosition();
@@ -74,6 +80,7 @@ const GoogleStreet = (props) => {
 
     const handleStartConversation = () => {
         console.log('Starting conversation...');
+        updateSelection('conversationOn', true);
         setConversationOn(true);
     };
     const startPoint = selections.languageAndRankData.location;
