@@ -3,12 +3,15 @@ class UserDataConfig {
     private rank: any;
     private city: any;
     private country: any;
+    private landmark: any;
 
     constructor() {
         this.language = null;
         this.rank = null;
         this.city = null;
         this.country = null;
+        this.landmark = null;
+
     }
 
     getLanguage() {
@@ -17,6 +20,10 @@ class UserDataConfig {
 
     getRank() {
         return this.rank;
+    }
+
+    getLandmark() {
+        return this.landmark;
     }
 
     getCity() {
@@ -41,6 +48,9 @@ class UserDataConfig {
 
     setCountry(country: any) {
         this.country = country;
+    }
+    setLandmark(landmark: any) {
+        this.landmark = landmark;
     }
 }
 

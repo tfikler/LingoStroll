@@ -2,6 +2,53 @@ import {Request, Response} from "express";
 import {openaiClient} from "../libs/openai";
 import { userData} from "../app";
 
+const jsonFormatForQuiz = {
+    questions: [
+        {
+            question: 'What is the capital of France?',
+            answers: ['Paris', 'London', 'Berlin', 'Madrid'],
+            correct_answer: 'Paris'
+        },
+        {
+            question: 'What is the capital of Germany?',
+            answers: ['Paris', 'London', 'Berlin', 'Madrid'],
+            correct_answer: 'Berlin'
+        }
+    ]
+}
+const stringifierJsonFormatForQuiz = JSON.stringify(jsonFormatForQuiz);
+
+
+export const getQuestions = async (req: Request, res: Response) => {
+    const systemPrompt = `
+You are a ${userData.getLanguage()} tutor, currently located in ${userData.getCity()}, ${userData.getCountry()}. You are at the landmark ${JSON.stringify(userData.getLandmark())}. 
+Your task is to create a vocabulary quiz for your students that is focused on ${userData.getLanguage()} words related to ${JSON.stringify(userData.getLandmark())}. 
+For example, you might ask, "How do you say 'cathedral' in ${userData.getLanguage()}?" if the landmark is a cathedral.
+`;
+
+    const systemRule = `
+Write a quiz with 8 vocabulary questions. Each question should be multiple-choice with 4 options, where only 1 answer is correct. 
+Make sure the correct answer is randomly placed among the 4 options, and indicate which one is correct. 
+The vocabulary should be related to ${JSON.stringify(userData.getLandmark())} and its surroundings (e.g., famous objects, buildings, or features at the location).
+Output the quiz in the following JSON format: ${stringifierJsonFormatForQuiz}.
+The quiz should be at level ${userData.getRank() == 1 ? 'easy' : userData.getRank() == 2 ? 'medium' : 'hard'} for students who are learning ${userData.getLanguage()}.
+The Questions must be in english.
+`;
+
+    const combinedPrompt = `${systemPrompt} Follow these rules: ${systemRule}`;
+    console.log(combinedPrompt)
+    try {
+        const openaiResponse = await openaiClient.chat.completions.create({
+            model: "gpt-3.5-turbo-0125",
+            messages: [{role: "system", content: combinedPrompt}],
+        });
+        return await res.json(openaiResponse.choices[0].message.content);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error fetching questions.");
+    }
+};
+
 export const practiceLanguage = async (req: Request, res: Response) => {
     const { language, rank } = req.body;
 

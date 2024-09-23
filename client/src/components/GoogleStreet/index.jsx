@@ -3,6 +3,7 @@ import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from 
 import {SelectionContext} from "../Context";
 import PropTypes from "prop-types";
 import ChatInterface from "../ChatInterface/index.tsx";
+import {AmericanQuestions} from "../AmericanQuestions/index.tsx";
 const containerStyle = {
     height: '100%',
     width: '100%'
@@ -90,10 +91,7 @@ const GoogleStreet = (props) => {
             {true && (
                 <Marker
                     title={'The marker`s title will appear as a tooltip.'}
-                    position={{
-                        lat:37.3852044,
-                        lng:-5.993113
-                    }}
+                    position={startPoint}
                     icon={{
                         path: window.google.maps.Circle, // Use a predefined shape or your own custom image
                     }}
@@ -102,7 +100,7 @@ const GoogleStreet = (props) => {
                 />
             )}
             {console.log(conversationOn)}
-            {conversationOn && <ChatInterface language={'Spanish'} rank={3}/>}
+            {conversationOn && <AmericanQuestions />}
 
             <StreetViewPanorama
                 position={startPoint}

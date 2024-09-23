@@ -30,17 +30,18 @@ function getCheckpoint(language: string, rank: number): LandmarkConfig {
     // Randomly select a landmark from the filtered list
 
     const randomLandmark = getRandomItem(landmarksByRank);
-    updateUserConfigurations(language, rank, city.name, country.name)
+    updateUserConfigurations(language, rank, city.name, country.name, randomLandmark)
 
     return randomLandmark;
 }
 
 
-function updateUserConfigurations(language: string, rank: number, city: string, country: string): void {
+function updateUserConfigurations(language: string, rank: number, city: string, country: string, landmark: any): void {
     userData.setLanguage(language);
     userData.setRank(rank);
     userData.setCity(city);
     userData.setCountry(country);
+    userData.setLandmark(landmark);
 }
 
 export {getCheckpoint, getRank, getRandomItem};
