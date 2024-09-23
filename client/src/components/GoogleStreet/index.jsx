@@ -16,6 +16,7 @@ const center = {
 
 const GoogleStreet = (props) => {
     const { selections, updateSelection } = useContext(SelectionContext);
+    const [markerLocations, setMarkerLocations] = useState(selections.languageAndRankData.markerLocations[0]);
     const {isLoaded, loadError} = useJsApiLoader({
         id: 'google-map-script',
         //googleMapsApiKey: 'AIzaSyDPbgEOXEYQk0xG5xi5cfTyejQIxlKd1bw'
@@ -51,7 +52,17 @@ const GoogleStreet = (props) => {
         if (!selections.conversationOn){
             setConversationOn(false);
         }
+        if (selections.currentLevel === 2) {
+            setMarkerLocations(selections.languageAndRankData.markerLocations[1])
+        }
+        if(selections.currentLevel === 3){
+            setMarkerLocations(selections.languageAndRankData.markerLocations[2])
+        }
     }, [selections.conversationOn]);
+
+    useEffect(() => {
+        updateSelection('currentLevel', 1);
+    }, []);
 
     const checkIfMarkerVisible = () => {
         if (!panorama) return; // Ensure panorama is defined
@@ -84,7 +95,7 @@ const GoogleStreet = (props) => {
         setConversationOn(true);
     };
     const startPoint = selections.languageAndRankData.location;
-    const firstMarker = selections.languageAndRankData.markerLocations[0];
+    // setMarkerLocations(firstMarker);
 
 
     return isLoaded ? (
@@ -98,7 +109,7 @@ const GoogleStreet = (props) => {
             {true && (
                 <Marker
                     title={'The marker`s title will appear as a tooltip.'}
-                    position={startPoint}
+                    position={markerLocations}
                     icon={{
                         path: window.google.maps.Circle, // Use a predefined shape or your own custom image
                     }}

@@ -12,6 +12,7 @@ export const AmericanQuestions = () => {
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
+    const [isQuizCompleted, setIsQuizCompleted] = useState(false);
     const [resultMessage, setResultMessage] = useState('');
 
     // Fetch the questions from the API
@@ -58,7 +59,13 @@ export const AmericanQuestions = () => {
         if (currentQuestionIndex < quizContent.questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            setIsModalVisible(false);
+            if (correctAnswers >= 1) {
+                const currentLevel = selections.currentLevel;
+                const newLevel = currentLevel + 1;
+                updateSelection('currentLevel', newLevel);
+            }
+            // setIsModalVisible(false);
+            setIsQuizCompleted(true);
         }
     };
 
@@ -78,7 +85,7 @@ export const AmericanQuestions = () => {
                     <button id="exitButton" onClick={handleExit}>
                         Exit
                     </button>
-                    {currentQuestionIndex < quizContent.questions.length ? (
+                    {!isQuizCompleted ? (
                         <div>
                             <div className="question">
                                 {quizContent.questions[currentQuestionIndex].question}
@@ -111,6 +118,16 @@ export const AmericanQuestions = () => {
                         <div>
                             Quiz Completed! <br />
                             You made {correctAnswers} correct answers.
+                            <br />
+                            {correctAnswers >= 6 ? (
+                                <div>
+                                    Congratulations! You passed the quiz - find the next landmark!
+                                </div>
+                            ) : (
+                                <div>
+                                    Sorry, you failed the quiz - retry.
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>

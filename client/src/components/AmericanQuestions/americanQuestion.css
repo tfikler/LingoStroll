@@ -1,6 +1,7 @@
 /* AmericanQuestions.css */
 
 #quizModal {
+    color: #333;
     position: fixed;
     top: 50%;
     left: 50%;
