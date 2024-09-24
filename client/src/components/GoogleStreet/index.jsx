@@ -139,7 +139,7 @@ const GoogleStreet = (props) => {
                     animation={window.google.maps.Animation.BOUNCE}
                 />
             )}
-            {conversationOn && <AmericanQuestions />}
+            {true && <AmericanQuestions />}
             {isPromptForNewRankOrLocation && <PromptForNewRankOrLocation />}
             <StreetViewPanorama
                 position={startPoint}
