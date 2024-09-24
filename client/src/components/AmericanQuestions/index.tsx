@@ -1,8 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Loading } from '../Loading/index.tsx';
 import './americanQuestion.css';
-import {SelectionContext} from "../Context";
-
+import { SelectionContext } from '../Context';
 
 export const AmericanQuestions = () => {
     const { selections, updateSelection } = useContext(SelectionContext);
@@ -14,12 +13,15 @@ export const AmericanQuestions = () => {
     const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
     const [isQuizCompleted, setIsQuizCompleted] = useState(false);
     const [resultMessage, setResultMessage] = useState('');
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
 
     // Fetch the questions from the API
     const fetchQuestions = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:3000/api/openai/american-questions');
+            const response = await fetch(
+                'http://localhost:3000/api/openai/american-questions'
+            );
             const data = await response.json();
             const data1 = JSON.parse(data);
             setQuizContent(data1);
@@ -46,6 +48,7 @@ export const AmericanQuestions = () => {
 
     const handleAnswerClick = (answer, correctAnswer) => {
         setIsQuestionAnswered(true);
+        setSelectedAnswer(answer);
         const isCorrect = answer === correctAnswer;
         if (isCorrect) {
             setCorrectAnswers(correctAnswers + 1);
@@ -55,6 +58,7 @@ export const AmericanQuestions = () => {
 
     const handleNextQuestion = () => {
         setIsQuestionAnswered(false);
+        setSelectedAnswer(null);
         setResultMessage('');
         if (currentQuestionIndex < quizContent.questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -89,23 +93,43 @@ export const AmericanQuestions = () => {
                             <div className="question">
                                 {quizContent.questions[currentQuestionIndex].question}
                             </div>
-                            {quizContent.questions[currentQuestionIndex].answers.map((answer, index) => (
-                                <button
-                                    key={index}
-                                    className="answerButton"
-                                    onClick={() =>
-                                        handleAnswerClick(
-                                            answer,
+                            {quizContent.questions[currentQuestionIndex].answers.map(
+                                (answer, index) => {
+                                    let buttonClass = 'answerButton';
+                                    if (isQuestionAnswered) {
+                                        if (
+                                            answer ===
                                             quizContent.questions[currentQuestionIndex].correct_answer
-                                        )
+                                        ) {
+                                            buttonClass += ' correctAnswer';
+                                        } else if (answer === selectedAnswer) {
+                                            buttonClass += ' incorrectAnswer';
+                                        }
                                     }
-                                    disabled={isQuestionAnswered}
-                                >
-                                    {answer}
-                                </button>
-                            ))}
+                                    return (
+                                        <button
+                                            key={index}
+                                            className={buttonClass}
+                                            onClick={() =>
+                                                handleAnswerClick(
+                                                    answer,
+                                                    quizContent.questions[currentQuestionIndex]
+                                                        .correct_answer
+                                                )
+                                            }
+                                            disabled={isQuestionAnswered}
+                                        >
+                                            {answer}
+                                        </button>
+                                    );
+                                }
+                            )}
                             {isQuestionAnswered && (
-                                <div className={`resultMessage ${resultMessage === 'Wrong Answer!' ? 'wrong' : ''}`}>
+                                <div
+                                    className={`resultMessage ${
+                                        resultMessage === 'Wrong Answer!' ? 'wrong' : ''
+                                    }`}
+                                >
                                     {resultMessage}
                                 </div>
                             )}
@@ -123,9 +147,7 @@ export const AmericanQuestions = () => {
                                     Congratulations! You passed the quiz - find the next landmark!
                                 </div>
                             ) : (
-                                <div>
-                                    Sorry, you failed the quiz - retry.
-                                </div>
+                                <div>Sorry, you failed the quiz - retry.</div>
                             )}
                         </div>
                     )}

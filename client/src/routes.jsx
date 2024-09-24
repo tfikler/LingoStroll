@@ -1,6 +1,10 @@
 import Middle from "./components/Middle";
 import GoogleStreet from "./components/GoogleStreet";
+<<<<<<< HEAD
 import { Login } from './components/Login/index.tsx';
+=======
+import {PromptForNewRankOrLocation} from "./components/PromptForNewRankOrLocation/index.tsx";
+>>>>>>> main
 
 
 const routes = [
@@ -30,6 +34,13 @@ const routes = [
         key: "game",
         route: "game",
         component: <GoogleStreet />,
+    },
+    {
+        name: "endGame",
+        type: "no-sidenav",
+        key: "endGame",
+        route: "endGame",
+        component: <PromptForNewRankOrLocation />,
     }
 
 ];

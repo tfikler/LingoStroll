@@ -69,3 +69,15 @@
 .resultMessage.wrong {
     color: red;
 }
+
+.correctAnswer {
+    background-color: lightgreen;
+}
+
+.incorrectAnswer {
+    background-color: lightcoral;
+}
+
+.resultMessage.wrong {
+    color: red;
+}
