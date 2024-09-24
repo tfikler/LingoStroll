@@ -33,6 +33,9 @@ The vocabulary should be related to ${JSON.stringify(userData.getLandmark())} an
 Output the quiz in the following JSON format: ${stringifierJsonFormatForQuiz}.
 The quiz should be at level ${userData.getRank() == 1 ? 'easy' : userData.getRank() == 2 ? 'medium' : 'hard'} for students who are learning ${userData.getLanguage()}.
 The Questions must be in english.
+The quiz should be all regarding to help learn the ${userData.getLanguage()} vocabulary!
+Don't ask questions regarding the location itself, only the vocabulary.
+Use various type of questions like what is the word for, what is the meaning of, etc.
 `;
 
     const combinedPrompt = `${systemPrompt} Follow these rules: ${systemRule}`;
