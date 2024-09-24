@@ -1,10 +1,8 @@
 import Middle from "./components/Middle";
 import GoogleStreet from "./components/GoogleStreet";
-<<<<<<< HEAD
-import { Login } from './components/Login/index.tsx';
-=======
 import {PromptForNewRankOrLocation} from "./components/PromptForNewRankOrLocation/index.tsx";
->>>>>>> main
+import { Login } from './components/Login/index.tsx';
+
 
 
 const routes = [
