@@ -1,8 +1,14 @@
 import Middle from "./components/Middle";
 import GoogleStreet from "./components/GoogleStreet";
+import { Login } from './components/Login/index.tsx';
 
 
 const routes = [
+    {
+        name: "Login Page",
+        route: "LoginPage",
+        component: <Login />,
+    },
     {
         name: "Main Page",
         route: "MainPage",
