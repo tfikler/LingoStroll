@@ -12,8 +12,6 @@ export const PromptForNewRankOrLocation = () => {
         if (option === 'Change Rank') {
             const newRank = selections.rank + 1;
             updateSelection('rank', newRank);
-            setIsModalVisible(false);
-            navigateToTheGame();
         } else if (option === 'Change Location') {
             const prevLocation = selections.languageAndRankData.name;
             let newPrevLocations = selections.prevLocations ? [...selections.prevLocations, prevLocation] : [prevLocation];
@@ -26,7 +24,6 @@ export const PromptForNewRankOrLocation = () => {
                 newPrevLocations
             );
             updateSelection('languageAndRankData', newData);
-            setIsModalVisible(false);
         }
     };
 

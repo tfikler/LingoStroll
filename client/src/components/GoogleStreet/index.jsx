@@ -66,13 +66,12 @@ const GoogleStreet = (props) => {
         }
         if (selections.currentLevel === 2) {
             setMarkerLocations(selections.languageAndRankData.markerLocations[1])
-            setIsPromptForNewRankOrLocation(true);
-            // navigate('/endGame');
         }
         if(selections.currentLevel === 3){
             setMarkerLocations(selections.languageAndRankData.markerLocations[2])
         }
         if(selections.currentLevel === 4){
+            setIsPromptForNewRankOrLocation(true);
         }
     }, [selections.conversationOn]);
 
@@ -80,7 +79,8 @@ const GoogleStreet = (props) => {
         setMarkerLocations(selections.languageAndRankData.markerLocations[0])
         setStartPoint(selections.languageAndRankData.location)
         updateSelection('currentLevel', 1);
-    }, [selections.languageAndRankData]);
+        setIsPromptForNewRankOrLocation(false);
+    }, [selections.languageAndRankData, selections.rank]);
 
     useEffect(() => {
         updateSelection('currentLevel', 1);
