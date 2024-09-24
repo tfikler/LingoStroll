@@ -1,8 +1,10 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
 import {SelectionContext} from "../Context";
 import PropTypes from "prop-types";
 import {AmericanQuestions} from "../AmericanQuestions/index.tsx";
+import {PromptForNewRankOrLocation} from "../PromptForNewRankOrLocation/index.tsx";
 const containerStyle = {
     height: '100%',
     width: '100%'
@@ -22,6 +24,8 @@ const GoogleStreet = (props) => {
     const [miniMap, setMiniMap] = useState(null);
     const [panorama, setPanorama] = useState(null);
     const [conversationOn, setConversationOn] = useState(false);
+    const [isPromptForNewRankOrLocation, setIsPromptForNewRankOrLocation] = useState(false);
+    const [startPoint, setStartPoint] = useState(selections.languageAndRankData.location);
 
 
     const onLoad = React.useCallback(function callback(map) {
@@ -62,11 +66,21 @@ const GoogleStreet = (props) => {
         }
         if (selections.currentLevel === 2) {
             setMarkerLocations(selections.languageAndRankData.markerLocations[1])
+            setIsPromptForNewRankOrLocation(true);
+            // navigate('/endGame');
         }
         if(selections.currentLevel === 3){
             setMarkerLocations(selections.languageAndRankData.markerLocations[2])
         }
+        if(selections.currentLevel === 4){
+        }
     }, [selections.conversationOn]);
+
+    useEffect(() => {
+        setMarkerLocations(selections.languageAndRankData.markerLocations[0])
+        setStartPoint(selections.languageAndRankData.location)
+        updateSelection('currentLevel', 1);
+    }, [selections.languageAndRankData]);
 
     useEffect(() => {
         updateSelection('currentLevel', 1);
@@ -101,7 +115,7 @@ const GoogleStreet = (props) => {
     const handlePositionChangeMiniMap = () => {
 
     };
-    const startPoint = selections.languageAndRankData.location;
+    // const startPoint = selections.languageAndRankData.location;
 
 
     return isLoaded ? (
@@ -126,6 +140,7 @@ const GoogleStreet = (props) => {
                 />
             )}
             {conversationOn && <AmericanQuestions />}
+            {isPromptForNewRankOrLocation && <PromptForNewRankOrLocation />}
             <StreetViewPanorama
                 position={startPoint}
                 visible={true}

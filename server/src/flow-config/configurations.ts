@@ -38,40 +38,40 @@ export class FlowConfig {
                             , 3),
                     ]),
                 ]),
-                // new CountryConfig("Mexico", [
-                //     new CityConfig("Mexico City", [
-                //         new LandmarkConfig("Zócalo", "19.4326,-99.1332, "Discuss politics in Spanish.", [{lat:19.4344666, lng:-99.1335738},{lat:19.4338469,lng:-99.1339934},{lat:19.433488,lng:-99.1325279}],1),
-                //         new LandmarkConfig("Chapultepec Park", "19.4204,-99.1815", "Talk about nature in Spanish.",[{lat:19.4213936,lng:-99.1875799},{lat:19.4211999,lng:-99.1893298},{lat:19.4185003,lng:-99.1857827}], 2),
-                //         new LandmarkConfig("Frida Kahlo Museum", "19.3556,-99.1625", "Discuss art in Spanish.",[{lat:19.3551665,lng:-99.1623979},{lat:19.3552573,lng:-99.1624538},{lat:19.3551772,lng:-99.1624889}], 3),
-                //     ]),
-                //     new CityConfig("Guadalajara", [
-                //         new LandmarkConfig("Guadalajara Cathedral", "20.6775,-103.3476", "Discuss religion in Spanish.",[{lat:20.6765812,lng:-103.3473802},{lat:20.6770771,lng:-103.3475172},{lat:20.677138,lng:-103.3465765}], 1),   SECOND POINT NEED ADJUSTING
-                //         new LandmarkConfig("Hospicio Cabañas", "20.6736,-103.3390", "Talk about culture in Spanish.",[{lat:20.6769149,lng:-103.3373396},{lat:20.6769251,lng:-103.337405},{lat:20.6770929,lng:-103.3375559}], 2),
-                //         new LandmarkConfig("Tequila Express", "20.6775,-103.3476", "Order drinks in Spanish.",[{lat:20.678812,lng:-103.3482312},{lat:20.6799653,lng:-103.3483952},{lat:20.6796956,-103.3476674}], 3), HERE I TRIED TO FIND FOOD PLACES
-                //     ]),
-                //     new CityConfig("Cancún", [ CANT FIND IT ON THE MAP
-                //         new LandmarkConfig("Chichen Itza", "20.6843,-88.5678", "Discuss history in Spanish.", 1),
-                //         new LandmarkConfig("Cancún Beaches", "21.1619,-86.8515", "Talk about leisure activities in Spanish.", 2),
-                //         new LandmarkConfig("Cenote Ik Kil", "20.6665,-88.5505", "Discuss nature in Spanish.", 3),
-                //     ]),
-                // ]),
-                // new CountryConfig("Argentina", [
-                //     new CityConfig("Buenos Aires", [
-                //         new LandmarkConfig("La Boca", "34.6345,-58.3630", "Discuss art in Spanish.",[{lat:-34.6397449,lng:-58.3627272},{lat:-34.6397115,lng:-58.3626819},{lat:-34.6394048,lng:-58.3623243}], 1),
-                //         new LandmarkConfig("Teatro Colón", "34.6010,-58.3826", "Talk about music in Spanish.",[{lat:-34.6013051,lng:-58.3838006},{lat:-34.6009902,lng:-58.3837343},{lat:-34.6011665,lng:-58.3836859}], 2),
-                //         new LandmarkConfig("Casa Rosada", "34.6081,-58.3703", "Discuss politics in Spanish.",[{lat:-34.6079611,lng:-58.3701711},{lat:-34.6077941,lng:-58.3702839},{lat:-34.6077878,lng:-58.3702301}], 3),
-                //     ]),
-                //     new CityConfig("Mendoza", [
-                //         new LandmarkConfig("Aconcagua Mountain", "32.6532,-70.0109", "Talk about nature in Spanish.", 1), THERE IN NOTHING IN SIGHT
-                //         new LandmarkConfig("Wine Tours", "32.8895,-68.8458", "Discuss wine in Spanish.", 2),THERE ISN'T A SPECIFIC PLACE
-                //         new LandmarkConfig("Parque General San Martín", "32.8893,-68.8766", "Discuss leisure in Spanish.",[{lat:-32.8862665,lng:-68.8632225},{lat:-32.8886602,lng:-68.8677923},{lat:-32.8891463,lng:-68.866457}],3),
-                //     ]),
-                //     new CityConfig("Córdoba", [
-                //         new LandmarkConfig("Manzana Jesuítica", "31.4165,-64.1830", "Discuss history in Spanish.",[{lat:-31.4191565,lng:-64.1868567},{lat:-31.4188247,lng:-64.1866648},{lat:-31.4173573,lng:-64.1876385}], 1),
-                //         new LandmarkConfig("Catedral de Córdoba", "31.4167,-64.1836", "Talk about religion in Spanish.",[{lat:-31.4169178,lng:-64.1843703},{lat:-31.4159796,lng:-64.1840076},{lat:-31.4177065,lng:-64.1847447}], 2),
-                //         new LandmarkConfig("Sarmiento Park", "31.4250,-64.1836", "Discuss nature in Spanish.",[{lat:-31.4321116,lng:-64.1794787},{lat:-31.4320498,lng:-64.1803882},{lat:-31.4307189,lng:-64.1806566}], 3),
-                //     ]),
-                // ]),
+                new CountryConfig("Mexico", [
+                    new CityConfig("Mexico City", [
+                        new LandmarkConfig("Zócalo", 19.4346561,-99.1335485, "Discuss politics in Spanish.", [{lat:19.4344666, lng:-99.1335738},{lat:19.4338469,lng:-99.1339934},{lat:19.433488,lng:-99.1325279}],1),
+                        new LandmarkConfig("Chapultepec Park", 19.4204,-99.1815, "Talk about nature in Spanish.",[{lat:19.4213936,lng:-99.1875799},{lat:19.4211999,lng:-99.1893298},{lat:19.4185003,lng:-99.1857827}], 2),
+                        new LandmarkConfig("Frida Kahlo Museum", 19.3556,-99.1625, "Discuss art in Spanish.",[{lat:19.3551665,lng:-99.1623979},{lat:19.3552573,lng:-99.1624538},{lat:19.3551772,lng:-99.1624889}], 3),
+                    ]),
+                    // new CityConfig("Guadalajara", [
+                    //     new LandmarkConfig("Guadalajara Cathedral", "20.6775,-103.3476", "Discuss religion in Spanish.",[{lat:20.6765812,lng:-103.3473802},{lat:20.6770771,lng:-103.3475172},{lat:20.677138,lng:-103.3465765}], 1),   SECOND POINT NEED ADJUSTING
+                    //     new LandmarkConfig("Hospicio Cabañas", "20.6736,-103.3390", "Talk about culture in Spanish.",[{lat:20.6769149,lng:-103.3373396},{lat:20.6769251,lng:-103.337405},{lat:20.6770929,lng:-103.3375559}], 2),
+                    //     new LandmarkConfig("Tequila Express", "20.6775,-103.3476", "Order drinks in Spanish.",[{lat:20.678812,lng:-103.3482312},{lat:20.6799653,lng:-103.3483952},{lat:20.6796956,-103.3476674}], 3), HERE I TRIED TO FIND FOOD PLACES
+                    // ]),
+                    // new CityConfig("Cancún", [ CANT FIND IT ON THE MAP
+                    //     new LandmarkConfig("Chichen Itza", "20.6843,-88.5678", "Discuss history in Spanish.", 1),
+                    //     new LandmarkConfig("Cancún Beaches", "21.1619,-86.8515", "Talk about leisure activities in Spanish.", 2),
+                    //     new LandmarkConfig("Cenote Ik Kil", "20.6665,-88.5505", "Discuss nature in Spanish.", 3),
+                    // ]),
+                ]),
+                new CountryConfig("Argentina", [
+                    new CityConfig("Buenos Aires", [
+                        new LandmarkConfig("La Boca", -34.6396619,-58.3625859, "Discuss art in Spanish.",[{lat:-34.6397449,lng:-58.3627272},{lat:-34.6397115,lng:-58.3626819},{lat:-34.6394048,lng:-58.3623243}], 1),
+                        new LandmarkConfig("Teatro Colón", 34.6010,-58.3826, "Talk about music in Spanish.",[{lat:-34.6013051,lng:-58.3838006},{lat:-34.6009902,lng:-58.3837343},{lat:-34.6011665,lng:-58.3836859}], 2),
+                        new LandmarkConfig("Casa Rosada", 34.6081,-58.3703, "Discuss politics in Spanish.",[{lat:-34.6079611,lng:-58.3701711},{lat:-34.6077941,lng:-58.3702839},{lat:-34.6077878,lng:-58.3702301}], 3),
+                    ]),
+                    // new CityConfig("Mendoza", [
+                    //     new LandmarkConfig("Aconcagua Mountain", "32.6532,-70.0109", "Talk about nature in Spanish.", 1), THERE IN NOTHING IN SIGHT
+                    //     new LandmarkConfig("Wine Tours", "32.8895,-68.8458", "Discuss wine in Spanish.", 2),THERE ISN'T A SPECIFIC PLACE
+                    //     new LandmarkConfig("Parque General San Martín", "32.8893,-68.8766", "Discuss leisure in Spanish.",[{lat:-32.8862665,lng:-68.8632225},{lat:-32.8886602,lng:-68.8677923},{lat:-32.8891463,lng:-68.866457}],3),
+                    // ]),
+                    // new CityConfig("Córdoba", [
+                    //     new LandmarkConfig("Manzana Jesuítica", "31.4165,-64.1830", "Discuss history in Spanish.",[{lat:-31.4191565,lng:-64.1868567},{lat:-31.4188247,lng:-64.1866648},{lat:-31.4173573,lng:-64.1876385}], 1),
+                    //     new LandmarkConfig("Catedral de Córdoba", "31.4167,-64.1836", "Talk about religion in Spanish.",[{lat:-31.4169178,lng:-64.1843703},{lat:-31.4159796,lng:-64.1840076},{lat:-31.4177065,lng:-64.1847447}], 2),
+                    //     new LandmarkConfig("Sarmiento Park", "31.4250,-64.1836", "Discuss nature in Spanish.",[{lat:-31.4321116,lng:-64.1794787},{lat:-31.4320498,lng:-64.1803882},{lat:-31.4307189,lng:-64.1806566}], 3),
+                    // ]),
+                ]),
             ]),
             english: new LanguageConfig("English", [
                 new CountryConfig("United States", [

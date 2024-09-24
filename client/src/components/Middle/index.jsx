@@ -2,7 +2,7 @@ import React, {useState, Fragment, useContext} from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { SelectionContext } from '../Context';
-import { getDataForLanguageAndRank } from "../../api/languages";
+import { getDataForLanguageAndRank } from "../../api/languages.ts";
 import './features10.css';
 import ChatInterface from "../ChatInterface/index.tsx"
 
