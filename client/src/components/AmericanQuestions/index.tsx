@@ -74,6 +74,44 @@ export const AmericanQuestions = () => {
         }
     };
 
+    const handleHearWord = async () => {
+        const word = quizContent.questions[currentQuestionIndex].correct_answer;
+        try {
+            const response = await fetch('http://localhost:3000/api/tts/speak-word', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: word })
+            });
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const audio = new Audio(url);
+            audio.play();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const handleHearSentence = async () => {
+        const sentence = quizContent.questions[currentQuestionIndex].question;
+        try {
+            const response = await fetch('http://localhost:3000/api/tts/speak-sentence', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: sentence })
+            });
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const audio = new Audio(url);
+            audio.play();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const handleExit = () => {
         setIsModalVisible(false);
         updateSelection('conversationOn', false);
@@ -136,7 +174,11 @@ export const AmericanQuestions = () => {
                                 </div>
                             )}
                             {isQuestionAnswered && (
-                                <button onClick={handleNextQuestion}>Next</button>
+                                <div>
+                                    <button onClick={handleHearWord}>Hear the word</button>
+                                    <button onClick={handleHearSentence}>Hear the word in a sentence</button>
+                                    <button onClick={handleNextQuestion}>Next</button>
+                                </div>
                             )}
                         </div>
                     ) : (
