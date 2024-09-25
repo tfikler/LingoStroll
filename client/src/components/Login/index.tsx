@@ -26,13 +26,10 @@ export const Login = () => {
                 const userObject = {
                     name: username,
                     password: password,
-                    spanish_score: 0,
-                    english_score: 0,
-                    french_score: 0,
                 }
                 updateUser(userObject);
             } else {
-                throw new Error(data.message);
+               console.log('Login failed:', data.message);
             }
             navigate('/MainPage')
         } catch (error) {

@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Loading } from '../Loading/index.tsx';
 import './americanQuestion.css';
-import { SelectionContext } from '../Context';
+import { SelectionContext, UserContext } from '../Context';
 import {updateUsedQuestions} from "../../api/languages.ts";
+import {increaseUserScore} from "../../api/db.ts";
 
 export const AmericanQuestions = () => {
     const { selections, updateSelection } = useContext(SelectionContext);
+    const { user } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(false);
     const [quizContent, setQuizContent] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -71,6 +73,8 @@ export const AmericanQuestions = () => {
                 const currentLevel = selections.currentLevel;
                 const newLevel = currentLevel + 1;
                 updateSelection('currentLevel', newLevel);
+                const scoreEarn = selections.currentLevel * selections.rank * currectAnswers;
+                increaseUserScore(user.name, selections.language, scoreEarn);
             }
             setIsQuizCompleted(true);
             updateUsedQuestions(quizContent);

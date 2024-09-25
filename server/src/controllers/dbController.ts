@@ -29,6 +29,30 @@ export const getUser = async (req: any, res: any) => {
 //
 // }
 
+export const increaseUserScore = async (req: any, res: any) => {
+    const { name, language, score } = req.body;
+    if (!name || !language) {
+        return res.status(400).send("Name and language are required.");
+    }
+
+    try {
+        await mongoService.connect();
+        const user = await mongoService.getUser(name);
+        if (!user) {
+            return res.status(404).send("User not found.");
+        }
+
+        const updatedUser = await mongoService.increaseUserScore(name, language, score);
+        res.json(updatedUser);
+    } catch (error) {
+        console.error("Error increasing user score:", error);
+        res.status(500).send("Error increasing user score.");
+    }
+    finally {
+        await mongoService.closeConnection();
+    }
+}
+
 export const addUser = async (req: any, res: any) => {
     const { name, password } = req.body;
     console.log(req.body)
