@@ -14,20 +14,19 @@ export const getUser = async (req: any, res: any) => {
     }
 }
 
-// export const getAllRecords = async (req: any, res: any) => {
-//     try {
-//         await mongoService.connect();
-//         const users = await mongoService.getAllUsersRecords();
-//         res.json(users);
-//     } catch (error) {
-//         console.error("Error getting users:", error);
-//         res.status(500).send("Error getting users.");
-//     }
-//     finally {
-//         await mongoService.closeConnection();
-//     }
-//
-// }
+export const getAllUsers = async (req: any, res: any) => {
+    try {
+        await mongoService.connect();
+        const users = await mongoService.getAllUsersRecords();
+        res.json(users);
+    } catch (error) {
+        console.error("Error getting users:", error);
+        res.status(500).send("Error getting users.");
+    }
+    finally {
+        await mongoService.closeConnection();
+    }
+}
 
 export const increaseUserScore = async (req: any, res: any) => {
     const { name, language, score } = req.body;

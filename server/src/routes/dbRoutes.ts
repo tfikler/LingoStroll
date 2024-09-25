@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getUser, addUser, loginUserOrRegister, increaseUserScore } from '../controllers/dbController';
+import { getUser, addUser, loginUserOrRegister, increaseUserScore, getAllUsers } from '../controllers/dbController';
 
 const router = Router();
 
@@ -8,5 +8,6 @@ router.get('/getUser', getUser);
 router.post('/addUser', addUser);
 router.post('/login', loginUserOrRegister);
 router.post('/increase-score', increaseUserScore);
+router.get('/users', getAllUsers);
 
 export default router;

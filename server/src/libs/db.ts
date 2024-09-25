@@ -91,6 +91,11 @@ class MongoService {
         }
         return { user: null, message: "User does not exist." };
     }
+
+    async getAllUsersRecords() {
+        const users = await this.collection.find().toArray();
+        return users;
+    }
     
 
     // Close the client connection

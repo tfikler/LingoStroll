@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { SelectionContext, UserContext } from '../Context';
 import { getDataForLanguageAndRank } from "../../api/languages.ts";
 import './features10.css';
-import ChatInterface from "../ChatInterface/index.tsx"
 
 const Middle = (props) => {
     const { selections, updateSelection } = useContext(SelectionContext);

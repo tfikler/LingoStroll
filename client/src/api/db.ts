@@ -6,3 +6,8 @@ export const increaseUserScore = async (user, language, score) => {
         score
     });
 }
+
+export const getAllUsers = async () => {
+    const response = await axios.get('http://localhost:3000/db/users');
+    return response.data;
+}

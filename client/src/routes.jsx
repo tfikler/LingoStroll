@@ -2,6 +2,7 @@ import Middle from "./components/Middle";
 import GoogleStreet from "./components/GoogleStreet";
 import { Login } from './components/Login/index.tsx';
 import {PromptForNewRankOrLocation} from "./components/PromptForNewRankOrLocation/index.tsx";
+import Leaderboard from "./components/Leaderboard/index.tsx";
 
 
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
         type: "collapse",
         name: "Leaderboard",
         route: "Leaderboard",
+        component: <Leaderboard />,
     },
     {
         name: "Change Language",
