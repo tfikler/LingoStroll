@@ -18,3 +18,19 @@ export const SelectionProvider = ({ children }) => {
         </SelectionContext.Provider>
     );
 };
+// Create a context for user data management
+export const UserContext = createContext({
+    user: null,  // Initial state of the user
+    setUser: () => {}  // Function to update the user
+});
+
+// Create a Provider component for UserContext
+export const UserProvider = ({ children }) => {
+    const [user, setUser] = useState(null);  // State to hold the user data
+
+    return (
+        <UserContext.Provider value={{ user, setUser }}>
+            {children}
+        </UserContext.Provider>
+    );
+};

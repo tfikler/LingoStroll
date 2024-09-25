@@ -25,6 +25,7 @@ app.use('/api/openai', openaiRoutes);
 app.use('/db', dbRoutes);
 app.use('/api/tts', ttsRoutes);
 
+
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
