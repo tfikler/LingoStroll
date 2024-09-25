@@ -73,7 +73,7 @@ export const AmericanQuestions = () => {
                 const currentLevel = selections.currentLevel;
                 const newLevel = currentLevel + 1;
                 updateSelection('currentLevel', newLevel);
-                const scoreEarn = selections.currentLevel * selections.rank * currectAnswers;
+                const scoreEarn = selections.currentLevel * selections.rank * correctAnswers;
                 increaseUserScore(user.name, selections.language, scoreEarn);
             }
             setIsQuizCompleted(true);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {getAllUsers} from "../../api/db.ts";
+import { getAllUsers } from '../../api/db.ts';
+import './Leaderboard.css';
 
 function Leaderboard() {
     const [users, setUsers] = useState([]);
@@ -23,19 +24,21 @@ function Leaderboard() {
     // Create leaderboards for each language
     const leaderboards = languages.reduce((acc, language) => {
         const scoreKey = `${language}_score`;
-        acc[language] = [...users].sort((a, b) => {
-            return parseInt(b[scoreKey], 10) - parseInt(a[scoreKey], 10);
-        });
+        acc[language] = [...users]
+            .filter(user => user[scoreKey] !== undefined)
+            .sort((a, b) => {
+                return parseInt(b[scoreKey], 10) - parseInt(a[scoreKey], 10);
+            });
         return acc;
     }, {});
 
     return (
-        <div>
+        <div className="leaderboard-container">
             <h1>Leaderboard</h1>
             {languages.map(language => (
-                <div key={language}>
+                <div key={language} className="language-section">
                     <h2>{language.charAt(0).toUpperCase() + language.slice(1)} Leaderboard</h2>
-                    <table>
+                    <table className="leaderboard-table">
                         <thead>
                         <tr>
                             <th>Rank</th>
@@ -55,6 +58,8 @@ function Leaderboard() {
                     </table>
                 </div>
             ))}
+            {/* Add some spacing at the bottom */}
+            <div style={{ marginBottom: '50px' }}></div>
         </div>
     );
 }
