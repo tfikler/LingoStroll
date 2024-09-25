@@ -5,7 +5,6 @@ const router = Router();
 
 
 router.post('/speak-word', speakWord)
-router.post('/speak-sentence', speakSentence)
 
 
 export default router;
