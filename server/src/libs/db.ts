@@ -56,11 +56,27 @@ class MongoService {
         return user;
     }
 
+    async validateUser(name: string, password: string): Promise<{ user: User | null, message: string }> {
+        const user = await this.collection.findOne({ name }) as User | null;
+        if (user) {
+            if (user.password === password) {
+                return { user, message: "User logged in successfully." };
+            } else {
+                return { user: null, message: "Username is taken, and password does not match." };
+            }
+        }
+        return { user: null, message: "User does not exist." };
+    }
+    
+
     // Close the client connection
     async closeConnection(): Promise<void> {
         await this.client.close();
         console.log("MongoDB connection closed");
     }
+    
 }
+
+
 
 export default MongoService;
