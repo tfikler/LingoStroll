@@ -10,10 +10,12 @@ function getRandomItem<T>(items: T[]): T {
 }
 
 function getCheckpoint(language: string, rank: number): LandmarkConfig {
+
     const languageConfig = flowConfig.getLanguage(language);
     if (!languageConfig) {
         throw new Error("Language not found.");
     }
+    const a = languageConfig.countries[2].cities[0].landmarks[2]
 
     // Randomly select a country
     const country = getRandomItem(languageConfig.countries);
@@ -32,7 +34,7 @@ function getCheckpoint(language: string, rank: number): LandmarkConfig {
     const randomLandmark = getRandomItem(landmarksByRank);
     updateUserConfigurations(language, rank, city.name, country.name, randomLandmark)
 
-    return randomLandmark;
+    return a;
 }
 
 
