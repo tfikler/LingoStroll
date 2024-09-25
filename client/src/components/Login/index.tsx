@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context'; 
 
 
 export const Login = () => {
-    const { setUser } = useContext(UserContext);
+    const { user, updateUser  } = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
+    const navigate = useNavigate();
 
     // Function to handle form submission
     const handleLogin = async (event) => {
@@ -22,11 +23,18 @@ export const Login = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                setUser();
-                console.log('Login successful');
+                const userObject = {
+                    name: username,
+                    password: password,
+                    spanish_score: 0,
+                    english_score: 0,
+                    french_score: 0,
+                }
+                updateUser(userObject);
             } else {
                 throw new Error(data.message);
             }
+            navigate('/MainPage')
         } catch (error) {
             setLoginError(error.message);
             console.error('Login failed:', error);

@@ -13,7 +13,7 @@ const routes = [
     {
         name: "Main Page",
         route: "MainPage",
-        component: <Middle />,
+        component: <Middle/>,
     },
     {
         type: "collapse",

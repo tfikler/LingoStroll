@@ -1,7 +1,7 @@
-import React, {useState, Fragment, useContext} from 'react';
+import React, {useState, Fragment, useContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { SelectionContext } from '../Context';
+import { SelectionContext, UserContext } from '../Context';
 import { getDataForLanguageAndRank } from "../../api/languages.ts";
 import './features10.css';
 import ChatInterface from "../ChatInterface/index.tsx"
@@ -11,7 +11,15 @@ const Middle = (props) => {
     const [selectedLanguage, setSelectedLanguage] = useState('');
     const [selectedRank, setSelectedRank] = useState(0);
     const navigate = useNavigate();
+    const { user } = useContext(UserContext);
 
+
+    useEffect(() => {
+        if (!user.name) {
+            console.log('User not logged in, redirecting to login page');
+            return navigate('/LoginPage');
+        }
+    }, [user])
     const handleLanguageSelect = (language) => {
         updateSelection('language', language);
         setSelectedLanguage(language);

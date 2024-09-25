@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import TopNavBar from "./components/TopNavBar";
 import Middle from "./components/Middle";
 import LeftNavBar from "./components/LeftNavBar";
-import {SelectionProvider} from "./components/Context";
+import {SelectionProvider, UserProvider} from "./components/Context";
 
 import { getRoutes } from "./routes";
 
@@ -52,6 +52,7 @@ export default function AppLayout({ appRoutes, children }: { appRoutes: any[]; c
 
     return (
         <SelectionProvider>
+            <UserProvider>
         <LayoutMain>
             <LayoutTopBar>
                 <TopNavBar routes={routes}/>
@@ -64,6 +65,7 @@ export default function AppLayout({ appRoutes, children }: { appRoutes: any[]; c
                 {/* Content for Right Navbar */}
             </LayoutRightNavBar>
         </LayoutMain>
+            </UserProvider>
         </SelectionProvider>
     );
 }
