@@ -15,6 +15,7 @@ export const AmericanQuestions = () => {
     const [isQuizCompleted, setIsQuizCompleted] = useState(false);
     const [resultMessage, setResultMessage] = useState('');
     const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [showEnglishSentence, setShowEnglishSentence] = useState(false);
 
     // Fetch the questions from the API
     const fetchQuestions = async () => {
@@ -60,6 +61,7 @@ export const AmericanQuestions = () => {
 
     const handleNextQuestion = () => {
         setIsQuestionAnswered(false);
+        setShowEnglishSentence(false);
         setSelectedAnswer(null);
         setResultMessage('');
         if (currentQuestionIndex < quizContent.questions.length - 1) {
@@ -92,7 +94,8 @@ export const AmericanQuestions = () => {
     }
 
     const handleHearWord = async () => {
-        const word = quizContent.questions[currentQuestionIndex].correct_answer;
+        setShowEnglishSentence(true);
+        const word = quizContent.questions[currentQuestionIndex].speak_props[1];
         try {
             const response = await fetch('http://localhost:3000/api/tts/speak-word', {
                 method: 'POST',
@@ -131,7 +134,13 @@ export const AmericanQuestions = () => {
                             <div className="question">
                                 {quizContent.questions[currentQuestionIndex].question}
                             </div>
-                            {quizContent.questions[currentQuestionIndex].answers.map(
+                            {showEnglishSentence ?
+                                <div>
+                                    English: {quizContent.questions[currentQuestionIndex].speak_props[0]}
+                                    <br/>
+                                    {selections.language}: {quizContent.questions[currentQuestionIndex].speak_props[1]}
+                                </div>
+                                : quizContent.questions[currentQuestionIndex].answers.map(
                                 (answer, index) => {
                                     let buttonClass = 'answerButton';
                                     if (isQuestionAnswered) {
@@ -162,7 +171,7 @@ export const AmericanQuestions = () => {
                                     );
                                 }
                             )}
-                            {isQuestionAnswered && (
+                            {isQuestionAnswered && !showEnglishSentence && (
                                 <div
                                     className={`resultMessage ${
                                         resultMessage === 'Wrong Answer!' ? 'wrong' : ''
@@ -173,7 +182,8 @@ export const AmericanQuestions = () => {
                             )}
                             {isQuestionAnswered && (
                                 <div>
-                                    <button onClick={handleHearWord}>Hear the word</button>
+                                    <button onClick={handleHearWord}>Hear the word in a sentence!</button>
+                                    <br/>
                                     <button onClick={handleNextQuestion}>Next</button>
                                 </div>
                             )}
