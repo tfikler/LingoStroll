@@ -36,6 +36,7 @@ The Questions must be in english.
 The quiz should be all regarding to help learn the ${userData.getLanguage()} vocabulary!
 Don't ask questions regarding the location itself, only the vocabulary.
 Use various type of questions like what is the word for, what is the meaning of, etc.
+Don't ask questions that you have already asked in previous quizzes - this are all the questions you have asked before: ${JSON.stringify(userData.getUsedQuestions())}.
 `;
 
     const combinedPrompt = `${systemPrompt} Follow these rules: ${systemRule}`;

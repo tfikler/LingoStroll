@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Loading } from '../Loading/index.tsx';
 import './americanQuestion.css';
 import { SelectionContext } from '../Context';
+import {updateUsedQuestions} from "../../api/languages.ts";
 
 export const AmericanQuestions = () => {
     const { selections, updateSelection } = useContext(SelectionContext);
@@ -69,6 +70,7 @@ export const AmericanQuestions = () => {
                 updateSelection('currentLevel', newLevel);
             }
             setIsQuizCompleted(true);
+            updateUsedQuestions(quizContent);
         }
     };
 

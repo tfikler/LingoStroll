@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getCheckpoint} from "../service/gameService";
+import { userData} from "../app";
 
 // Controller function to fetch data based on language and rank
 export const getDataForLanguageAndRank = async (req: Request, res: Response) => {
@@ -14,4 +15,16 @@ export const getDataForLanguageAndRank = async (req: Request, res: Response) => 
         console.error(`Error fetching data: ${error.message}`);
         res.status(500).json({ error: 'Failed to fetch data' });
     }
+};
+
+export const updateUserWithUsedQuestions = async (req: Request, res: Response) => {
+    const data = req.body;
+    const questionsArray: string[] = [];
+
+    data.questions.forEach((item: any) => {
+            questionsArray.push(item.question);
+    });
+
+    userData.setUsedQuestions(questionsArray);
+    res.status(200).json({ message: 'Successfully updated user with used questions' });
 };
