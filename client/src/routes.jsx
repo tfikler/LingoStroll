@@ -23,11 +23,6 @@ const routes = [
         component: <Leaderboard />,
     },
     {
-        name: "Change Language",
-        key: "change-language",
-        route: "changeLanguage",
-    },
-    {
         name: "Game",
         type: "no-sidenav",
         key: "game",
