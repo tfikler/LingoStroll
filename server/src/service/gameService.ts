@@ -15,7 +15,7 @@ function getCheckpoint(language: string, rank: number): LandmarkConfig {
     if (!languageConfig) {
         throw new Error("Language not found.");
     }
-    const a = languageConfig.countries[2].cities[0].landmarks[2]
+    // const a = languageConfig.countries[2].cities[0].landmarks[2]
 
     // Randomly select a country
     const country = getRandomItem(languageConfig.countries);
@@ -34,7 +34,7 @@ function getCheckpoint(language: string, rank: number): LandmarkConfig {
     const randomLandmark = getRandomItem(landmarksByRank);
     updateUserConfigurations(language, rank, city.name, country.name, randomLandmark)
 
-    return a;
+    return randomLandmark;
 }
 
 
