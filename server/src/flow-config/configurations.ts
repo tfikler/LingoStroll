@@ -24,25 +24,22 @@ export class FlowConfig {
                     //     new LandmarkConfig("Retiro Park", 40.4153000, -3.6846000, "Talk about nature in Spanish.", 2),
                     //     new LandmarkConfig("Plaza Mayor", 40.4155000, -3.7074000, "Order food in Spanish.", 3),
                     // ]),
-                    new CityConfig("Seville", [
-                        new LandmarkConfig("Seville Cathedral", 37.3860686, -5.9927638, "Discuss religion in Spanish.", [{lat: 37.3861041, lng: -5.9923071}, {
-                                lat:37.3852044,
-                                lng:-5.993113
 
-                                
-                            },{lat: 37.3853863,lng:-5.9930006},{lat:37.385257,lng:-5.9938882}]
-                            ,1),
-                        new LandmarkConfig("Alcázar of Seville", 37.3863862, -5.992497, "Talk about history in Spanish.",[{lat: 37.3861041, lng: -5.9923071},{lat:37.3836432,lng:-5.9913286},{lat:37.3837437,lng:-5.991077}]
+                    //{lat: 37.3771967,lng:-5.9869406},
+                    new CityConfig("Seville", [
+                        new LandmarkConfig("Seville Cathedral", 37.3857892,-5.9936587, "Discuss religion in Spanish.", [{lat:37.3859188,lng:-5.9932392},{lat:37.3855345,lng:-5.9932042}, {lat: 37.3859988,lng:-5.9932492}
+                                ],1),
+                        new LandmarkConfig("Alcázar of Seville", 37.3832689,-5.9905297, "Talk about history in Spanish.",[{lat: 37.3833089,lng: -5.9905297},{lat:37.3830712,lng:-5.9903884},{lat:37.3827364,lng:-5.9904428}]
                             ,2),
-                        new LandmarkConfig("Plaza de España", 37.3772000, -5.9869000, "Discuss culture in Spanish.",[{lat: 37.3861041, lng: -5.9923071},{lat:37.3768502,lng:-5.9899179}, {lat:37.374153,lng:-5.988111}]
+                        new LandmarkConfig("Plaza de España", 37.3771967,-5.9869406, "Discuss culture in Spanish.",[{lat: 37.3771967,lng:-5.9869406},{lat:37.3774215,lng:-5.986381}, {lat:37.3779968,lng:-5.9870747}]
                             , 3),
                     ]),
                 ]),
                 new CountryConfig("Mexico", [
                     new CityConfig("Mexico City", [
-                        new LandmarkConfig("Zócalo", 19.4346561,-99.1335485, "Discuss politics in Spanish.", [{lat:19.4344666, lng:-99.1335738},{lat:19.4338469,lng:-99.1339934},{lat:19.433488,lng:-99.1325279}],1),
-                        new LandmarkConfig("Chapultepec Park", 19.4204,-99.1815, "Talk about nature in Spanish.",[{lat:19.4213936,lng:-99.1875799},{lat:19.4211999,lng:-99.1893298},{lat:19.4185003,lng:-99.1857827}], 2),
-                        new LandmarkConfig("Frida Kahlo Museum", 19.3556,-99.1625, "Discuss art in Spanish.",[{lat:19.3551665,lng:-99.1623979},{lat:19.3552573,lng:-99.1624538},{lat:19.3551772,lng:-99.1624889}], 3),
+                        new LandmarkConfig("Zócalo", 19.4325802,-99.1329849, "Discuss politics in Spanish.", [{lat:19.4336881,lng:-99.1332418},{lat:19.4327144,lng:-99.1333511},{lat:19.433688,lng:-99.1325479}],1),
+                        new LandmarkConfig("Parque de los Olivos", 19.2508386,-99.0042654, "Talk about nature in Spanish.",[{lat:19.2496379,lng:-99.0049663},{lat:19.2507779,lng:-99.0038547},{lat:19.2483897,lng:-99.0048317}], 2),
+                        new LandmarkConfig("Frida Kahlo Museum", 19.3550665,-99.1624694, "Discuss art in Spanish.",[{lat:19.3551942,lng:-99.1624949},{lat:19.3550802,lng:-99.1623417},{lat:19.3550865,lng:-99.1624094}], 3),
                     ]),
                     // new CityConfig("Guadalajara", [
                     //     new LandmarkConfig("Guadalajara Cathedral", "20.6775,-103.3476", "Discuss religion in Spanish.",[{lat:20.6765812,lng:-103.3473802},{lat:20.6770771,lng:-103.3475172},{lat:20.677138,lng:-103.3465765}], 1),   SECOND POINT NEED ADJUSTING
@@ -57,9 +54,10 @@ export class FlowConfig {
                 ]),
                 new CountryConfig("Argentina", [
                     new CityConfig("Buenos Aires", [
-                        new LandmarkConfig("La Boca", -34.6396619,-58.3625859, "Discuss art in Spanish.",[{lat:-34.6397449,lng:-58.3627272},{lat:-34.6397115,lng:-58.3626819},{lat:-34.6394048,lng:-58.3623243}], 1),
-                        new LandmarkConfig("Teatro Colón", 34.6010,-58.3826, "Talk about music in Spanish.",[{lat:-34.6013051,lng:-58.3838006},{lat:-34.6009902,lng:-58.3837343},{lat:-34.6011665,lng:-58.3836859}], 2),
-                        new LandmarkConfig("Casa Rosada", 34.6081,-58.3703, "Discuss politics in Spanish.",[{lat:-34.6079611,lng:-58.3701711},{lat:-34.6077941,lng:-58.3702839},{lat:-34.6077878,lng:-58.3702301}], 3),
+                        //
+                        new LandmarkConfig("Museo Nacional de Bellas Artes", -34.583999,-58.3931992, "Discuss art in Spanish.",[{lat:-34.5838681,lng:-58.3933584},{lat:-34.5839506,lng:-58.3931787},{lat:-34.5839506,lng:-58.3931787}], 1),
+                        new LandmarkConfig("Teatro Colón", -34.6010308,-58.3834253, "Talk about music in Spanish.",[{lat:-34.6011279,lng:-58.3833302},{lat:-34.6010638,lng:-58.3835782},{lat:-34.60108708,lng:-58.3834253}], 2),
+                        new LandmarkConfig("Casa Rosada", -34.6080709,-58.3702507, "Discuss politics in Spanish.",[{lat:-34.6079709,lng:-58.3702427},{lat:-34.6077399,lng:-58.370448},{lat:-34.6077681,lng:-58.3701223}], 3),
                     ]),
                     // new CityConfig("Mendoza", [
                     //     new LandmarkConfig("Aconcagua Mountain", "32.6532,-70.0109", "Talk about nature in Spanish.", 1), THERE IN NOTHING IN SIGHT
