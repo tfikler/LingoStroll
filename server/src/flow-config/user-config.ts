@@ -4,6 +4,7 @@ class UserDataConfig {
     private city: any;
     private country: any;
     private landmark: any;
+    private usedQuestions: any;
 
     constructor() {
         this.language = null;
@@ -11,6 +12,7 @@ class UserDataConfig {
         this.city = null;
         this.country = null;
         this.landmark = null;
+        this.usedQuestions = [];
 
     }
 
@@ -51,6 +53,14 @@ class UserDataConfig {
     }
     setLandmark(landmark: any) {
         this.landmark = landmark;
+    }
+
+    getUsedQuestions() {
+        return this.usedQuestions;
+    }
+
+    setUsedQuestions(usedQuestions: any) {
+        this.usedQuestions = this.usedQuestions.concat(usedQuestions);
     }
 }
 

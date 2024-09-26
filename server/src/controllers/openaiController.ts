@@ -7,12 +7,14 @@ const jsonFormatForQuiz = {
         {
             question: 'What is the capital of France?',
             answers: ['Paris', 'London', 'Berlin', 'Madrid'],
-            correct_answer: 'Paris'
+            correct_answer: 'Paris',
+            speak_props: ['Where does paris located?', 'Où se situe Paris ?']
         },
         {
             question: 'What is the capital of Germany?',
             answers: ['Paris', 'London', 'Berlin', 'Madrid'],
-            correct_answer: 'Berlin'
+            correct_answer: 'Berlin',
+            speak_props: ['Where does Berlin located?', 'Wo befindet sich belin??']
         }
     ]
 }
@@ -36,6 +38,8 @@ The Questions must be in english.
 The quiz should be all regarding to help learn the ${userData.getLanguage()} vocabulary!
 Don't ask questions regarding the location itself, only the vocabulary.
 Use various type of questions like what is the word for, what is the meaning of, etc.
+Don't ask questions that you have already asked in previous quizzes - this are all the questions you have asked before: ${JSON.stringify(userData.getUsedQuestions())}.
+In speak_props you should add a sentence which is correlated to word that the user should learn, should be in array where the first element is in english and the second in the language that the user is learning.
 `;
 
     const combinedPrompt = `${systemPrompt} Follow these rules: ${systemRule}`;

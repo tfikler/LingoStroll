@@ -12,3 +12,7 @@ export const getDataForLanguageAndRank = async (language, rank, invalidLocations
     }
     return response.data;
 }
+
+export const updateUsedQuestions = async (data) => {
+    await axios.post('http://localhost:3000/api/locations/used-questions', data);
+};

@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
 import {SelectionContext} from "../Context";
 import PropTypes from "prop-types";
+import { logEvent } from "../../ga4";
 import {AmericanQuestions} from "../AmericanQuestions/index.tsx";
 import {PromptForNewRankOrLocation} from "../PromptForNewRankOrLocation/index.tsx";
 const containerStyle = {
@@ -29,6 +30,7 @@ const GoogleStreet = (props) => {
 
 
     const onLoad = React.useCallback(function callback(map) {
+        logEvent('Game Page', 'Google Map Loaded - user start playing game');
         const bounds = new window.google.maps.LatLngBounds();
         map.fitBounds(bounds);
         setMap(map)
@@ -71,6 +73,7 @@ const GoogleStreet = (props) => {
             setMarkerLocations(selections.languageAndRankData.markerLocations[2])
         }
         if(selections.currentLevel === 4){
+            logEvent('Game Page', 'User finished the game at the location - prompt for new rank or location');
             setIsPromptForNewRankOrLocation(true);
         }
     }, [selections.conversationOn]);
@@ -108,14 +111,10 @@ const GoogleStreet = (props) => {
 
     const handleStartConversation = () => {
         console.log('Starting conversation...');
+        logEvent('Game Page', `User started conversation at marker number ${selections.currentLevel}`);
         updateSelection('conversationOn', true);
         setConversationOn(true);
     };
-
-    const handlePositionChangeMiniMap = () => {
-
-    };
-    // const startPoint = selections.languageAndRankData.location;
 
 
     return isLoaded ? (

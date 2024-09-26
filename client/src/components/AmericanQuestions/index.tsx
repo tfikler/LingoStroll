@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Loading } from '../Loading/index.tsx';
 import './americanQuestion.css';
-import { SelectionContext } from '../Context';
+import { SelectionContext, UserContext } from '../Context';
+import {updateUsedQuestions} from "../../api/languages.ts";
+import {increaseUserScore} from "../../api/db.ts";
+import {logEvent} from "../../ga4.js";
 
 export const AmericanQuestions = () => {
     const { selections, updateSelection } = useContext(SelectionContext);
+    const { user } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(false);
     const [quizContent, setQuizContent] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -14,6 +18,7 @@ export const AmericanQuestions = () => {
     const [isQuizCompleted, setIsQuizCompleted] = useState(false);
     const [resultMessage, setResultMessage] = useState('');
     const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [showEnglishSentence, setShowEnglishSentence] = useState(false);
 
     // Fetch the questions from the API
     const fetchQuestions = async () => {
@@ -44,6 +49,7 @@ export const AmericanQuestions = () => {
 
     useEffect(() => {
         fetchQuestions();
+        handleFirstTimeWord();
     }, []);
 
     const handleAnswerClick = (answer, correctAnswer) => {
@@ -58,21 +64,65 @@ export const AmericanQuestions = () => {
 
     const handleNextQuestion = () => {
         setIsQuestionAnswered(false);
+        setShowEnglishSentence(false);
         setSelectedAnswer(null);
         setResultMessage('');
         if (currentQuestionIndex < quizContent.questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
             if (correctAnswers >= 1) {
+                logEvent('quiz', 'User passed the quiz!')
                 const currentLevel = selections.currentLevel;
                 const newLevel = currentLevel + 1;
                 updateSelection('currentLevel', newLevel);
+                const scoreEarn = selections.currentLevel * selections.rank * correctAnswers;
+                increaseUserScore(user.name, selections.language, scoreEarn);
             }
+            logEvent('quiz', 'User completed the quiz! - but did not pass')
             setIsQuizCompleted(true);
+            updateUsedQuestions(quizContent);
+        }
+    };
+
+    const handleFirstTimeWord = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/tts/speak-word', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: 'a' })
+            });
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const handleHearWord = async () => {
+        logEvent('quiz', 'User clicked on hear word in a sentence');
+        setShowEnglishSentence(true);
+        const word = quizContent.questions[currentQuestionIndex].speak_props[1];
+        try {
+            const response = await fetch('http://localhost:3000/api/tts/speak-word', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: word })
+            });
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const audio = new Audio(url);
+            audio.play();
+        } catch (error) {
+            console.error(error);
         }
     };
 
     const handleExit = () => {
+        logEvent('quiz', 'User exited the quiz')
         setIsModalVisible(false);
         updateSelection('conversationOn', false);
     };
@@ -93,7 +143,13 @@ export const AmericanQuestions = () => {
                             <div className="question">
                                 {quizContent.questions[currentQuestionIndex].question}
                             </div>
-                            {quizContent.questions[currentQuestionIndex].answers.map(
+                            {showEnglishSentence ?
+                                <div>
+                                    English: {quizContent.questions[currentQuestionIndex].speak_props[0]}
+                                    <br/>
+                                    {selections.language}: {quizContent.questions[currentQuestionIndex].speak_props[1]}
+                                </div>
+                                : quizContent.questions[currentQuestionIndex].answers.map(
                                 (answer, index) => {
                                     let buttonClass = 'answerButton';
                                     if (isQuestionAnswered) {
@@ -124,7 +180,7 @@ export const AmericanQuestions = () => {
                                     );
                                 }
                             )}
-                            {isQuestionAnswered && (
+                            {isQuestionAnswered && !showEnglishSentence && (
                                 <div
                                     className={`resultMessage ${
                                         resultMessage === 'Wrong Answer!' ? 'wrong' : ''
@@ -134,7 +190,11 @@ export const AmericanQuestions = () => {
                                 </div>
                             )}
                             {isQuestionAnswered && (
-                                <button onClick={handleNextQuestion}>Next</button>
+                                <div>
+                                    <button onClick={handleHearWord}>Hear the word in a sentence!</button>
+                                    <br/>
+                                    <button onClick={handleNextQuestion}>Next</button>
+                                </div>
                             )}
                         </div>
                     ) : (

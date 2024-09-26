@@ -1,13 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { UserContext } from '../Context'; 
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context';
+import { logEvent } from '../../ga4.js';
 
 
 export const Login = () => {
-    const { setUser } = useContext(UserContext);
+    const { user, updateUser  } = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
+    const navigate = useNavigate();
 
     // Function to handle form submission
     const handleLogin = async (event) => {
@@ -22,11 +24,17 @@ export const Login = () => {
             });
             const data = await response.json();
             if (response.ok) {
-                setUser();
-                console.log('Login successful');
+                const userObject = {
+                    name: username,
+                    password: password,
+                }
+                updateUser(userObject);
+                logEvent('login', 'successful_login')
             } else {
-                throw new Error(data.message);
+               console.log('Login failed:', data.message);
+               logEvent('login', 'failed_login')
             }
+            navigate('/MainPage')
         } catch (error) {
             setLoginError(error.message);
             console.error('Login failed:', error);
