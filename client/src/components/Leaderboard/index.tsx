@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllUsers } from '../../api/db.ts';
+import { logEvent } from '../../ga4.js';
 import './Leaderboard.css';
 
 function Leaderboard() {
@@ -8,6 +9,8 @@ function Leaderboard() {
     const languages = ['Spanish', 'French', 'German', 'English'];
 
     useEffect(() => {
+
+        logEvent('leaderboard', 'viewed_leaderboard');
         const fetchUsers = async () => {
             const users = await getAllUsers();
             setUsers(users);

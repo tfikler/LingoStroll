@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../Context'; 
+import { UserContext } from '../Context';
+import { logEvent } from '../../ga4.js';
 
 
 export const Login = () => {
@@ -28,8 +29,10 @@ export const Login = () => {
                     password: password,
                 }
                 updateUser(userObject);
+                logEvent('login', 'successful_login')
             } else {
                console.log('Login failed:', data.message);
+               logEvent('login', 'failed_login')
             }
             navigate('/MainPage')
         } catch (error) {

@@ -4,6 +4,7 @@ import './americanQuestion.css';
 import { SelectionContext, UserContext } from '../Context';
 import {updateUsedQuestions} from "../../api/languages.ts";
 import {increaseUserScore} from "../../api/db.ts";
+import {logEvent} from "../../ga4.js";
 
 export const AmericanQuestions = () => {
     const { selections, updateSelection } = useContext(SelectionContext);
@@ -70,12 +71,14 @@ export const AmericanQuestions = () => {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
             if (correctAnswers >= 1) {
+                logEvent('quiz', 'User passed the quiz!')
                 const currentLevel = selections.currentLevel;
                 const newLevel = currentLevel + 1;
                 updateSelection('currentLevel', newLevel);
                 const scoreEarn = selections.currentLevel * selections.rank * correctAnswers;
                 increaseUserScore(user.name, selections.language, scoreEarn);
             }
+            logEvent('quiz', 'User completed the quiz! - but did not pass')
             setIsQuizCompleted(true);
             updateUsedQuestions(quizContent);
         }
@@ -98,6 +101,7 @@ export const AmericanQuestions = () => {
     }
 
     const handleHearWord = async () => {
+        logEvent('quiz', 'User clicked on hear word in a sentence');
         setShowEnglishSentence(true);
         const word = quizContent.questions[currentQuestionIndex].speak_props[1];
         try {
@@ -118,6 +122,7 @@ export const AmericanQuestions = () => {
     };
 
     const handleExit = () => {
+        logEvent('quiz', 'User exited the quiz')
         setIsModalVisible(false);
         updateSelection('conversationOn', false);
     };

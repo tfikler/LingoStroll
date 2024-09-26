@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { SelectionContext } from "../Context";
 import { getDataForLanguageAndRank } from "../../api/languages.ts";
 import { useNavigate } from 'react-router-dom';
+import { logEvent } from "../../ga4.js";
 
 export const PromptForNewRankOrLocation = () => {
     const { selections, updateSelection } = useContext(SelectionContext);
@@ -10,9 +11,11 @@ export const PromptForNewRankOrLocation = () => {
 
     const handleChoice = async (option) => {
         if (option === 'Change Rank') {
+            logEvent('PromptForNewRankOrLocation', 'User chose to change rank')
             const newRank = selections.rank + 1;
             updateSelection('rank', newRank);
         } else if (option === 'Change Location') {
+            logEvent('PromptForNewRankOrLocation', 'User chose to change location')
             const prevLocation = selections.languageAndRankData.name;
             let newPrevLocations = selections.prevLocations ? [...selections.prevLocations, prevLocation] : [prevLocation];
 
