@@ -70,7 +70,7 @@ export const AmericanQuestions = () => {
         if (currentQuestionIndex < quizContent.questions.length - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-            if (correctAnswers >= 1) {
+            if (correctAnswers >= 5) {
                 logEvent('quiz', 'User passed the quiz!')
                 const currentLevel = selections.currentLevel;
                 const newLevel = currentLevel + 1;
