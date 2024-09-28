@@ -28,6 +28,7 @@ const GoogleStreet = (props) => {
     const [conversationOn, setConversationOn] = useState(false);
     const [isPromptForNewRankOrLocation, setIsPromptForNewRankOrLocation] = useState(false);
     const [startPoint, setStartPoint] = useState(selections.languageAndRankData.location);
+    const [markerBounderies, setMarkerBounderies] = useState({});
 
 
     const onLoad = React.useCallback(function callback(map) {
@@ -69,9 +70,11 @@ const GoogleStreet = (props) => {
         }
         if (selections.currentLevel === 2) {
             setMarkerLocations(selections.languageAndRankData.markerLocations[1])
+            setMarkerBounderies(selections.languageAndRankData.markerBoundaries[1])
         }
         if(selections.currentLevel === 3){
             setMarkerLocations(selections.languageAndRankData.markerLocations[2])
+            setMarkerBounderies(selections.languageAndRankData.markerBoundaries[2])
         }
         if(selections.currentLevel === 4){
             logEvent('Game Page', 'User finished the game at the location - prompt for new rank or location');
@@ -81,6 +84,7 @@ const GoogleStreet = (props) => {
 
     useEffect(() => {
         setMarkerLocations(selections.languageAndRankData.markerLocations[0])
+        setMarkerBounderies(selections.languageAndRankData.markerBoundaries[0])
         setStartPoint(selections.languageAndRankData.location)
         updateSelection('currentLevel', 1);
         setIsPromptForNewRankOrLocation(false);
@@ -92,15 +96,31 @@ const GoogleStreet = (props) => {
 
     const checkIfMarkerVisible = () => {
         if (!panorama) return; // Ensure panorama is defined
+        if (!markerBounderies) return;
+        const { h_lat, l_lat, h_lng, l_lng } = markerBounderies;
+
+        // const h_lat = 19.25077270000321;
+        // const l_lat = 19.25075315899132;
+        //
+        // const h_lng = -99.00386166708303;
+        // const l_lng = -99.00399941771481;
         const position = panorama.getPosition();
-        // Check if the latitude and longitude are within the specified bounds
-        if (position.lat() >= 37.38583 && position.lat() <= 37.38587 &&
-            position.lng() <= -5.99379 && position.lng() >= -5.9909) {
-            console.log('returning true')
-            console.log(`current pos: ${position.lat()} - ${position.lng()}`)
-            return true;
+        if (position.lat() >= l_lat) {
+            console.log('lat is bigger than lowest')
+            if (position.lat() <= h_lat) {
+                console.log('lat is smaller than highest')
+                if (position.lng() >= l_lng) {
+                    console.log('lng is smaller than lowest')
+                    if (position.lng() <= h_lng) {
+                        console.log('lng is bigger than highest')
+                        console.log('returning true')
+                        console.log(`current pos: ${position.lat()} - ${position.lng()}`)
+                        return true;
+                    }
+                }
+            }
         }
-        console.log(`Marker not visible at lat: ${position.lat()} and lng: ${position.lng()}. Expected between lat: 37.38583 to 37.38587 and lng: -5.99279 to -5.99209`);
+        console.log(`Marker not visible at lat: ${position.lat()} and lng: ${position.lng()}. Expected between lat: ${h_lat} >= ${position.lat()} >= ${l_lat} and lng: ${l_lng} <= ${position.lng()} <= ${h_lng}`);
         return false;
     }
 
@@ -128,7 +148,7 @@ const GoogleStreet = (props) => {
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
-            {true && (
+            {markerVisible && (
                 <Marker
                     title={'The marker`s title will appear as a tooltip.'}
                     position={markerLocations}

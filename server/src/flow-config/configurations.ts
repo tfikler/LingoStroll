@@ -28,18 +28,19 @@ export class FlowConfig {
                     //{lat: 37.3771967,lng:-5.9869406},
                     new CityConfig("Seville", [
                         new LandmarkConfig("Seville Cathedral", 37.3857892,-5.9936587, "Discuss religion in Spanish.", [{lat:37.3859188,lng:-5.9932392},{lat:37.3855345,lng:-5.9932042}, {lat: 37.3859988,lng:-5.9932492}
-                                ],1),
+                                ],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],1),
                         new LandmarkConfig("Alcázar of Seville", 37.3832689,-5.9905297, "Talk about history in Spanish.",[{lat: 37.3833089,lng: -5.9905297},{lat:37.3830712,lng:-5.9903884},{lat:37.3827364,lng:-5.9904428}]
-                            ,2),
+                            ,[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],2),
                         new LandmarkConfig("Plaza de España", 37.3771967,-5.9869406, "Discuss culture in Spanish.",[{lat: 37.3771967,lng:-5.9869406},{lat:37.3774215,lng:-5.986381}, {lat:37.3779968,lng:-5.9870747}]
-                            , 3),
+                            , [{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],3),
                     ]),
                 ]),
                 new CountryConfig("Mexico", [
                     new CityConfig("Mexico City", [
-                        new LandmarkConfig("Zócalo", 19.4325802,-99.1329849, "Discuss politics in Spanish.", [{lat:19.4336881,lng:-99.1332418},{lat:19.4327144,lng:-99.1333511},{lat:19.433688,lng:-99.1325479}],1),
-                        new LandmarkConfig("Parque de los Olivos", 19.2508386,-99.0042654, "Talk about nature in Spanish.",[{lat:19.2496379,lng:-99.0049663},{lat:19.2507779,lng:-99.0038547},{lat:19.2483897,lng:-99.0048317}], 2),
-                        new LandmarkConfig("Frida Kahlo Museum", 19.3550665,-99.1624694, "Discuss art in Spanish.",[{lat:19.3551942,lng:-99.1624949},{lat:19.3550802,lng:-99.1623417},{lat:19.3550865,lng:-99.1624094}], 3),
+                        new LandmarkConfig("Zócalo", 19.4325802,-99.1329849, "Discuss politics in Spanish.", [{lat:19.4336881,lng:-99.1332418},{lat:19.4327144,lng:-99.1333511},{lat:19.433688,lng:-99.1325479}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781},{h_lat:19.432722, l_lat:19.432285, h_lng: -99.1330038, l_lng: -99.1335878}
+                        , {h_lat:19.43332, l_lat:19.432285, h_lng: -99.132398, l_lng: -99.1335878}],1),
+                        new LandmarkConfig("Parque de los Olivos", 19.2508386,-99.0042654, "Talk about nature in Spanish.",[{lat:19.2496379,lng:-99.0049663},{lat:19.2507779,lng:-99.0038547},{lat:19.2483897,lng:-99.0048317}], [{h_lat:19.249783064234375, l_lat:19.249650865761026, h_lng: -99.00476843146936, l_lng: -99.00481825491644}, {h_lat:19.25077270000321, l_lat:19.25075315899132, h_lng: -99.00386166708303, l_lng: -99.00399941771481}, {h_lat:19.248363789216434, l_lat:19.248198995951523, h_lng: -99.00479473419892, l_lng: -99.00485281942441}],2),
+                        new LandmarkConfig("Frida Kahlo Museum", 19.3550665,-99.1624694, "Discuss art in Spanish.",[{lat:19.3551942,lng:-99.1624949},{lat:19.3550802,lng:-99.1623417},{lat:19.3550865,lng:-99.1624094}], [{h_lat:19.355155602974794, l_lat:19.35513115355259, h_lng: -99.16248708217708, l_lng: -99.16250304716691},{h_lat:19.35503166307914, l_lat:19.355007853080607, h_lng: -99.16235078730656, l_lng: -99.16245263095408},{h_lat:19.35506555940007, l_lat:19.35504921012318, h_lng: -99.16246849859502, l_lng: -99.16248606852703}],3),
                     ]),
                     // new CityConfig("Guadalajara", [
                     //     new LandmarkConfig("Guadalajara Cathedral", "20.6775,-103.3476", "Discuss religion in Spanish.",[{lat:20.6765812,lng:-103.3473802},{lat:20.6770771,lng:-103.3475172},{lat:20.677138,lng:-103.3465765}], 1),   SECOND POINT NEED ADJUSTING
@@ -55,9 +56,9 @@ export class FlowConfig {
                 new CountryConfig("Argentina", [
                     new CityConfig("Buenos Aires", [
                         //
-                        new LandmarkConfig("Museo Nacional de Bellas Artes", -34.583999,-58.3931992, "Discuss art in Spanish.",[{lat:-34.5838681,lng:-58.3933584},{lat:-34.5839506,lng:-58.3931787},{lat:-34.5839506,lng:-58.3931787}], 1),
-                        new LandmarkConfig("Teatro Colón", -34.6010308,-58.3834253, "Talk about music in Spanish.",[{lat:-34.6011279,lng:-58.3833302},{lat:-34.6010638,lng:-58.3835782},{lat:-34.60108708,lng:-58.3834253}], 2),
-                        new LandmarkConfig("Casa Rosada", -34.6080709,-58.3702507, "Discuss politics in Spanish.",[{lat:-34.6079709,lng:-58.3702427},{lat:-34.6077399,lng:-58.370448},{lat:-34.6077681,lng:-58.3701223}], 3),
+                        new LandmarkConfig("Museo Nacional de Bellas Artes", -34.583999,-58.3931992, "Discuss art in Spanish.",[{lat:-34.5838681,lng:-58.3933584},{lat:-34.5839506,lng:-58.3931787},{lat:-34.5839506,lng:-58.3931787}], [{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],1),
+                        new LandmarkConfig("Teatro Colón", -34.6010308,-58.3834253, "Talk about music in Spanish.",[{lat:-34.6011279,lng:-58.3833302},{lat:-34.6010638,lng:-58.3835782},{lat:-34.60108708,lng:-58.3834253}], [{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],2),
+                        new LandmarkConfig("Casa Rosada", -34.6080709,-58.3702507, "Discuss politics in Spanish.",[{lat:-34.6079709,lng:-58.3702427},{lat:-34.6077399,lng:-58.370448},{lat:-34.6077681,lng:-58.3701223}], [{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],3),
                     ]),
                     // new CityConfig("Mendoza", [
                     //     new LandmarkConfig("Aconcagua Mountain", "32.6532,-70.0109", "Talk about nature in Spanish.", 1), THERE IN NOTHING IN SIGHT
@@ -74,20 +75,20 @@ export class FlowConfig {
             english: new LanguageConfig("English", [
                 new CountryConfig("United States", [
                     new CityConfig("New York", [
-                        new LandmarkConfig("Statue of Liberty", 37.3863048,-5.9922559, "Discuss history in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:40.6885812,lng:-74.0443608},{lat:40.689451,lng:-74.0437805},{lat:40.6902145,lng:-74.0440363}],1),
-                        new LandmarkConfig("Central Park", 37.3863048,-5.9922559, "Talk about nature in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:40.7825341,lng:-73.9666892},{lat:40.7789784,lng:-73.9667977},{lat:40.779712,lng:-73.9654051}],2),
-                        new LandmarkConfig("Times Square", 37.3863048,-5.9922559, "Order tickets in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:40.7580037,lng:-73.9855675},{lat:40.7589543,lng:-73.9848462},{lat:40.7600632,lng:-73.984635}],3),
+                        new LandmarkConfig("Statue of Liberty", 37.3863048,-5.9922559, "Discuss history in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:40.6885812,lng:-74.0443608},{lat:40.689451,lng:-74.0437805},{lat:40.6902145,lng:-74.0440363}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],1),
+                        new LandmarkConfig("Central Park", 37.3863048,-5.9922559, "Talk about nature in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:40.7825341,lng:-73.9666892},{lat:40.7789784,lng:-73.9667977},{lat:40.779712,lng:-73.9654051}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],2),
+                        new LandmarkConfig("Times Square", 37.3863048,-5.9922559, "Order tickets in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:40.7580037,lng:-73.9855675},{lat:40.7589543,lng:-73.9848462},{lat:40.7600632,lng:-73.984635}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],3),
                     ]),
                     new CityConfig("Los Angeles", [
-                        new LandmarkConfig("Hollywood Sign", 37.3863048,-5.9922559, "Discuss movies in English.", [{lat: 37.3861041, lng: -5.9923071}],1),
+                        new LandmarkConfig("Hollywood Sign", 37.3863048,-5.9922559, "Discuss movies in English.", [{lat: 37.3861041, lng: -5.9923071}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],1),
                         new LandmarkConfig("Santa Monica Pier", 37.3863048,-5.9922559, "Talk about leisure in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:34.0074091,lng:-118.499913},{lat:34.0086084,lng:-118.4981329}]
-                            ,2),
-                        new LandmarkConfig("Getty Center", 37.3863048,-5.9922559, "Discuss art in English.",[{lat: 37.3861041, lng: -5.9923071},{lat:34.0771738,lng:-118.4745906},{lat:34.0774475,lng:-118.4740309}], 3),
+                            ,[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],2),
+                        new LandmarkConfig("Getty Center", 37.3863048,-5.9922559, "Discuss art in English.",[{lat: 37.3861041, lng: -5.9923071},{lat:34.0771738,lng:-118.4745906},{lat:34.0774475,lng:-118.4740309}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}], 3),
                     ]),
                     new CityConfig("Chicago", [
-                        new LandmarkConfig("Millennium Park", 37.3863048,-5.9922559, "Discuss art in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:41.8821734,lng:-87.6223466},{lat:41.8830089,lng:-87.622481},{lat:41.8826839,lng:-87.6233231}],1),
-                        new LandmarkConfig("Navy Pier", 37.3863048,-5.9922559, "Talk about leisure in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:41.8915427,lng:-87.6099951},{lat:41.8910518,lng:-87.6099854}],2),
-                        new LandmarkConfig("Willis Tower", 37.3863048,-5.9922559, "Discuss architecture in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:41.879015,lng:-87.6352567},{lat:41.8806501,lng:-87.6353069}],3),
+                        new LandmarkConfig("Millennium Park", 37.3863048,-5.9922559, "Discuss art in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:41.8821734,lng:-87.6223466},{lat:41.8830089,lng:-87.622481},{lat:41.8826839,lng:-87.6233231}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],1),
+                        new LandmarkConfig("Navy Pier", 37.3863048,-5.9922559, "Talk about leisure in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:41.8915427,lng:-87.6099951},{lat:41.8910518,lng:-87.6099854}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],2),
+                        new LandmarkConfig("Willis Tower", 37.3863048,-5.9922559, "Discuss architecture in English.", [{lat: 37.3861041, lng: -5.9923071},{lat:41.879015,lng:-87.6352567},{lat:41.8806501,lng:-87.6353069}],[{h_lat:19.4339459, l_lat:19.4332066, h_lng: -99.13305319, l_lng: -99.1338781}],3),
                     ]),
                 ]),
             //     new CountryConfig("United Kingdom", [
@@ -229,13 +230,15 @@ export class LandmarkConfig {
     public location: { lat: number; lng: number };
     public prompt: string;
     public markerLocations: { lat: number; lng: number }[];
+    public markerBoundaries: { h_lat: number, l_lat: number, h_lng: number, l_lng: number }[];
     public rank: number;
 
-    constructor(name: string, lat: number, lng: number, prompt: string, markerLocations: { lat: number; lng: number }[], rank: number) {
+    constructor(name: string, lat: number, lng: number, prompt: string, markerLocations: { lat: number; lng: number }[], markerBoundaries: { h_lat: number, l_lat: number, h_lng: number, l_lng: number }[], rank: number) {
         this.name = name;
         this.location = {lat, lng};
         this.prompt = prompt;
         this.markerLocations = markerLocations;
+        this.markerBoundaries = markerBoundaries;
         this.rank = rank;
     }
 }
