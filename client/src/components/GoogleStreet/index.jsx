@@ -1,11 +1,12 @@
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 import {GoogleMap, StreetViewPanorama, LoadScript, useJsApiLoader, Marker} from "@react-google-maps/api";
 import {SelectionContext} from "../Context";
 import PropTypes from "prop-types";
 import { logEvent } from "../../ga4";
 import {AmericanQuestions} from "../AmericanQuestions/index.tsx";
 import {PromptForNewRankOrLocation} from "../PromptForNewRankOrLocation/index.tsx";
+import {MiniMap} from "../miniMap/index.tsx";
+import zIndex from "@mui/material/styles/zIndex";
 const containerStyle = {
     height: '100%',
     width: '100%'
@@ -147,10 +148,10 @@ const GoogleStreet = (props) => {
             />
         </GoogleMap>
             {/* Way to get the panorama works - load it without streetView, and only after its all loads, add streetview */}
-            <GoogleMap
+            {map && <GoogleMap
                 zoom={16}
                 streetView={panorama}
-                onLoad={(map) =>  map.setStreetView(panorama)}
+                // onLoad={(map) =>  map.setStreetView(panorama)}
                 center={startPoint}
                 mapContainerStyle={{
                     position: 'absolute',
@@ -169,7 +170,7 @@ const GoogleStreet = (props) => {
                     }}
                     animation={window.google.maps.Animation.BOUNCE}
                 />
-            </GoogleMap>
+            </GoogleMap>}
 
         </>
     ) : <></>
